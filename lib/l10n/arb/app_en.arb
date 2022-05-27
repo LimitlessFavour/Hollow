@@ -1,6 +1,6 @@
 {
     "@@locale": "en",
-    "create_new_account": "Bet money on anything, with anyone.",
+    "create_new_account": "Create new account",
     "@create_new_account": {
         "description": "Text shown on sign up page"
     },
@@ -40,6 +40,10 @@
     "@terms_of_service": {
         "description": "Text shown on sign up page"
     },
+    "and": "and",
+    "@and": {
+        "description": "Text shown on sign up page"
+    },
     "privacy_policy": "Privacy Policy",
     "@privacy_policy": {
         "description": "Text shown on sign up page"
@@ -64,7 +68,7 @@
     "@new_password": {
         "description": "Text shown on sign up page"
     },
-    "must_be_8_chars": "Must be 8 charcters at least",
+    "must_be_8_chars": "Must be 8 characters at least",
     "@must_be_8_chars": {
         "description": "Text shown in password character conditions"
     },
