@@ -55,16 +55,12 @@ class AppScaffold extends StatelessWidget {
     }
     return LoadingOverlay(
       inAsyncCall: inProgress,
-      child: AnimatedContainer(
-        duration: theme.durations.regular,
-        color: theme.colors.scaffoldBackground,
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: appbar,
-          body: body,
-          bottomNavigationBar: bottomNavigationBar,
-          floatingActionButton: floatingActionButton,
-        ),
+      child: Scaffold(
+        backgroundColor: theme.colors.scaffoldBackground,
+        appBar: appbar,
+        body: body,
+        bottomNavigationBar: bottomNavigationBar,
+        floatingActionButton: floatingActionButton,
       ),
     );
   }
