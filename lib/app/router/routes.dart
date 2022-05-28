@@ -7,8 +7,8 @@ class Routes {
   Routes._();
 
   static const String root = 'root';
-  // static const String login = 'login';
-  // static const String signUp = 'sign-up';
+  static const String login = 'login';
+  static const String signUp = 'sign-up';
 
 }
 

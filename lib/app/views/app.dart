@@ -17,7 +17,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final useDevicePreview = devicePreviewEnabled && kDebugMode;
-    return _AppView(useDevicePreview: useDevicePreview);
+    return BlocProvider(
+      create: (context) => AppBloc(),
+      child: _AppView(useDevicePreview: useDevicePreview),
+    );
   }
 }
 
@@ -39,8 +42,7 @@ class _AppViewState extends State<_AppView> {
   @override
   void initState() {
     super.initState();
-    router = HollowRouter().router;
-    // router = HollowRouter(context.read<AppBloc>()).router;
+    router = HollowRouter(context.read<AppBloc>()).router;
   }
 
   @override
@@ -56,7 +58,7 @@ class _AppViewState extends State<_AppView> {
           ),
           darkAppLogo: ExactAssetPicture(
             SvgPicture.svgStringDecoderBuilder,
-            'assets/images/logo.svg', 
+            'assets/images/logo.svg',
           ),
           localizationsDelegates: const [
             AppLocalizations.delegate,

@@ -1,3 +1,4 @@
 library shared;
 
-export 'src/shared.dart';
+export 'src/typedefs.dart';
+export 'src/user/user.dart';

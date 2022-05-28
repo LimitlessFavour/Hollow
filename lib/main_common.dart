@@ -25,11 +25,11 @@ Future<void> mainCommon(Environment env) async {
 
   await bootstrap(
     () async {
-      return const App(
+      return App(
         // appConfigRepository: appConfigRepository,
         // authenticationRepository: authenticationRepository,
         // locationRepository: locationRepository,
-        // devicePreviewEnabled: Env.enableDevicePreview,
+        devicePreviewEnabled: Env.enableDevicePreview,
       );
     },
   );

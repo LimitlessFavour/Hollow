@@ -4,8 +4,8 @@ import 'package:shared/shared.dart';
 
 void main() {
   group('Shared', () {
-    test('can be instantiated', () {
-      expect(Shared(), isNotNull);
-    });
+    // test('can be instantiated', () {
+    //   expect(Shared(), isNotNull);
+    // });
   });
 }
