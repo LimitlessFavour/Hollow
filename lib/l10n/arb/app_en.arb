@@ -1,7 +1,201 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
+    "create_new_account": "Create new account",
+    "@create_new_account": {
+        "description": "Text shown on sign up page"
+    },
+    "we_glad_you_here": "We’re glad you’re here. Please create your account in a few steps.",
+    "@we_glad_you_here": {
+        "description": "Text shown on sign up page"
+    },
+    "first_name_middle_name": "First Name and Middle Name",
+    "@first_name_middle_name": {
+        "description": "Text shown on sign up page"
+    },
+    "last_name": "Last Name",
+    "@last_name": {
+        "description": "Text shown on sign up page"
+    },
+    "preferred_name_username": "Preferred Name/ Username",
+    "@preferred_name_username": {
+        "description": "Text shown on sign up page"
+    },
+    "phone_number": "Phone Number",
+    "@phone_number": {
+        "description": "Text shown on sign up page"
+    },
+    "email_address": "Email Address",
+    "@email_address": {
+        "description": "Text shown on sign up page"
+    },
+    "password": "Password",
+    "@password": {
+        "description": "Text shown on sign up page"
+    },
+    "i_have_read_chagera": "I have read and agree to Chagera’s",
+    "@i_have_read_chagera": {
+        "description": "Text shown on sign up page"
+    },
+    "terms_of_service": "Terms of Service",
+    "@terms_of_service": {
+        "description": "Text shown on sign up page"
+    },
+    "and": "and",
+    "@and": {
+        "description": "Text shown on sign up page"
+    },
+    "privacy_policy": "Privacy Policy",
+    "@privacy_policy": {
+        "description": "Text shown on sign up page"
+    },
+    "card_holder_agreement": "Card Holder Agreement",
+    "@card_holder_agreement": {
+        "description": "Text shown on sign up page"
+    },
+    "create_my_account": "Create My Account",
+    "@create_my_account": {
+        "description": "Text shown on sign up page"
+    },
+    "got_an_account_question": "Got an account?",
+    "@got_an_account_question": {
+        "description": "Text shown on sign up page"
+    },
+    "sign_in": "Sign in",
+    "@sign_in": {
+        "description": "Text shown on sign up page"
+    },
+    "new_password": "New Password",
+    "@new_password": {
+        "description": "Text shown on sign up page"
+    },
+    "must_be_8_chars": "Must be 8 characters at least",
+    "@must_be_8_chars": {
+        "description": "Text shown in password character conditions"
+    },
+    "must_contain_special_char": "Must contain a special character",
+    "@must_contain_special_char": {
+        "description": "Text shown in password character conditions"
+    },
+    "must_contain_number": "Must contain a number at least",
+    "@must_contain_number": {
+        "description": "Text shown in password character conditions"
+    },
+    "acct_verification_pending": "Account verification pending. Features would be available once approved",
+    "@acct_verification_pending": {
+        "description": "Text shown on home page"
+    },
+    "create_wallet": "Create Wallet",
+    "@create_wallet": {
+        "description": "Text shown on home page"
+    },
+    "send_money": "Send money",
+    "@send_money": {
+        "description": "Text shown on home page"
+    },
+    "convert": "Convert",
+    "@convert": {
+        "description": "Text shown on home page"
+    },
+    "airtime_data": "Airtime & Data",
+    "@airtime_data": {
+        "description": "Text shown on home page"
+    },
+    "virtual_acc": "Virtual Acc",
+    "@virtual_acc": {
+        "description": "Text shown on home page"
+    },
+    "tickets_n_events": "Tickets & Events",
+    "@tickets_n_events": {
+        "description": "Text shown on home page"
+    },
+    "more": "More",
+    "@more": {
+        "description": "Text shown on home page"
+    },
+
+    "recent_transactions": "Recent Transactions",
+    "@recent_transactions": {
+        "description": "Text shown on home page"
+    },
+    "see_all": "See all",
+    "@see_all": {
+        "description": "Text shown on home page"
+    },
+    "no_transactions_yet": "No transactions yet.",
+    "@no_transactions_yet": {
+        "description": "Text shown on home page"
+    },
+
+    "create_new_wallet": "Create New Wallet",
+    "@create_new_wallet": {
+        "description": "Text shown on create new wallet page"
+    }, 
+    "what_type_wallet": "What type of wallet do you want to create?",
+    "@what_type_wallet": {
+        "description": "Text shown on create new wallet page"
+    }, 
+    "choose_wallet": "Choose Wallet",
+    "@choose_wallet": {
+        "description": "Text shown on create new wallet page"
+    }, 
+    "proceed": "Proceed",
+    "@proceed": {
+        "description": "Text shown on create new wallet page"
+    }, 
+    "search_item": "Search Item",
+    "@search_item": {
+        "description": "Text shown on create new wallet page"
+    }, 
+    "crypto_wallet": "Crypto Wallet",
+    "@crypto_wallet": {
+        "description": "Text shown on create new wallet page"
+    }, 
+    "fiat_wallet": "Fiat Wallet",
+    "@fiat_wallet": {
+        "description": "Text shown on create new wallet page"
+    }, 
+    "please_fill_details_wallet": "Please fill in the details to create your wallet.",
+    "@please_fill_details_wallet": {
+        "description": "Text shown on create new wallet page"
+    }, 
+    "select_country_currency": "Select Country/ Currency",
+    "@select_country_currency": {
+        "description": "Text shown on create new wallet page"
+    }, 
+    "successfull": "Successful!",
+    "@successfull": {
+        "description": "Text shown on confirmation modalsheet"
+    }, 
+    "your_wallet_created_successfully": "Your wallet has been created successfully.",
+    "@your_wallet_created_successfully": {
+        "description": "Text shown on confirmation modalsheet"
+    }, 
+    "fund_wallet": "Fund Wallet",
+    "@fund_wallet": {
+        "description": "Text shown on confirmation modalsheet"
+    }, 
+    "back_to_home": "Back to Home",
+    "@back_to_home": {
+        "description": "Text shown on confirmation modalsheet"
+    }, 
+    "hi": "Hi",
+    "@hi": {
+        "description": "Text shown on home page"
+    }, 
+    "welcome_back": "Welcome Back",
+    "@welcome_back": {
+        "description": "Text shown on home page"
+    }, 
+    "currency_balance": "%1 Balance",
+    "@currency_balance": {
+        "description": "Text shown on home page"
+    },
+    "withdraw": "Withdraw",
+    "@withdraw": {
+        "description": "Text shown on home page"
+    },
+    "fund": "Fund",
+    "@fund": {
+        "description": "Text shown on home page"
     }
 }
