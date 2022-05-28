@@ -10,10 +10,7 @@ import 'package:hollow_design_system/src/theme/data/images.dart';
 import 'package:hollow_design_system/src/theme/data/typography.dart';
 import 'package:hollow_design_system/src/theme/theme.dart';
 
-enum AppThemeColorMode {
-  light,
-  dark,
-}
+enum AppThemeColorMode { light, dark }
 
 /// Updates automatically the [AppTheme] regarding the current [MediaQuery],
 /// as soon as the theme isn't overriden.
@@ -22,7 +19,6 @@ class AppResponsiveTheme extends StatelessWidget {
     Key? key,
     required this.appLogo,
     required this.child,
-    required this.themeMode,
     this.darkAppLogo,
     this.colorMode,
     this.formFactor,
@@ -35,15 +31,8 @@ class AppResponsiveTheme extends StatelessWidget {
   final Widget child;
   final PictureProvider appLogo;
   final PictureProvider? darkAppLogo;
-  final ThemeMode themeMode;
 
-  static AppThemeColorMode colorModeOf(
-    BuildContext context,
-    ThemeMode themeMode,
-  ) {
-    if (themeMode == ThemeMode.light) return AppThemeColorMode.light;
-    if (themeMode == ThemeMode.dark) return AppThemeColorMode.dark;
-
+  static AppThemeColorMode colorModeOf(BuildContext context) {
     //themeMode.system
     final platformBrightness = MediaQuery.platformBrightnessOf(context);
     final useDarkTheme = platformBrightness == ui.Brightness.dark;
@@ -73,7 +62,7 @@ class AppResponsiveTheme extends StatelessWidget {
     var theme = AppThemeData.regular(appLogo: appLogo);
 
     /// Updating the colors for the current brightness
-    final colorMode = this.colorMode ?? colorModeOf(context, themeMode);
+    final colorMode = this.colorMode ?? colorModeOf(context);
     switch (colorMode) {
       case AppThemeColorMode.dark:
         theme = theme.withColors(AppColorsData.dark());
