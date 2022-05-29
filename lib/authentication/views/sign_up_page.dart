@@ -1,5 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:formz/formz.dart';
 import 'package:hollow/app/bloc/app_bloc.dart';
 import 'package:hollow/authentication/cubits/signup/sign_up_cubit.dart';
 import 'package:hollow/l10n/l10n.dart';
@@ -29,33 +30,37 @@ class _SignupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return AppScaffold(
-      body: Center(
-        child: AppScrollableColumn(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const AppGap.large(),
-            AppText.heading3(l10n.create_new_account),
-            const AppGap.regular(),
-            AppText.heading3(l10n.we_glad_you_here),
-            const AppGap.big(),
-            const _FirstNameMiddleName(),
-            const _LastName(),
-            const _PreferredName(),
-            const _PhoneNumber(),
-            const _EmailAddress(),
-            const _Password(),
-            const AppGap.large(),
-            const _TermsConditions(),
-            const AppGap.large(),
-            AppButton(
-              title: l10n.create_my_account,
+    return BlocConsumer<SignupCubit, SignupState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return AppScaffold(
+          inProgress: state.status == FormzStatus.submissionInProgress,
+          body: Center(
+            child: AppScrollableColumn(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const AppGap.large(),
+                AppText.heading3(l10n.create_new_account),
+                const AppGap.regular(),
+                AppText.heading3(l10n.we_glad_you_here),
+                const AppGap.big(),
+                const _FirstNameMiddleName(),
+                const _LastName(),
+                const _PreferredName(),
+                const _PhoneNumber(),
+                const _EmailAddress(),
+                const _Password(),
+                const AppGap.large(),
+                const _TermsConditions(),
+                const AppGap.large(),
+                const _SignupButton(),
+                const AppGap.big(),
+                const _GotAccount(),
+              ],
             ),
-            const AppGap.big(),
-            const _GotAccount(),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -170,7 +175,9 @@ class _Password extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return BlocBuilder<SignupCubit, SignupState>(
-      buildWhen: (previous, current) => previous.password != current.password,
+      buildWhen: (previous, current) =>
+          previous.password != current.password ||
+          previous.confirmedPassword != current.confirmedPassword,
       builder: (context, state) {
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -181,7 +188,34 @@ class _Password extends StatelessWidget {
                   context.read<SignupCubit>().passwordChanged(password),
             ),
             const AppGap.regular(),
+            AppTextField(
+              hintText: 'l10n.confirm_passsword',
+              onChanged: (password) => context
+                  .read<SignupCubit>()
+                  .confirmedPasswordChanged(password),
+            ),
+            const AppGap.regular(),
           ],
+        );
+      },
+    );
+  }
+}
+
+class _SignupButton extends StatelessWidget {
+  const _SignupButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignupCubit, SignupState>(
+      // buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        final l10n = context.l10n;
+        return AppButton(
+          title: l10n.create_my_account,
+          onTap: state.status.isValid
+              ? () => context.read<SignupCubit>().signUpWithCredentials()
+              : null,
         );
       },
     );

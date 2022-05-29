@@ -1,10 +1,5 @@
 part of 'sign_up_cubit.dart';
 
-@JsonEnum()
-enum ConfirmPasswordValidationError {
-  invalid,
-}
-
 @freezed
 class SignupState with _$SignupState {
   const factory SignupState({

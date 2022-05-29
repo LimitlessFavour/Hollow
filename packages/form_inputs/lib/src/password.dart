@@ -3,8 +3,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 /// Validation errors for the [Password] [FormzInput].
 enum PasswordValidationError {
-  /// Generic invalid error.
-  invalid
+  /// all of the conditions insatisified
+  all,
+
+  ///invalid error - character conditions not matched
+  invalidCharacters,
+
+  /// password length range -- too small or big
+  invalidLength,
 }
 
 /// {@template password}
@@ -18,15 +24,25 @@ class Password extends FormzInput<String, PasswordValidationError> {
   const Password.dirty([String value = '']) : super.dirty(value);
 
   static final _passwordRegExp =
-      RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&~]).{0,}');
+
+  /// length of acceptable characters
+  static const validLength = 8;
+  
 
   @override
   PasswordValidationError? validator(String? value) {
-    return _passwordRegExp.hasMatch(value ?? '')
+    final invalidLength = (value ?? '').length < validLength;
+    return !invalidLength && _passwordRegExp.hasMatch(value ?? '')
         ? null
-        : PasswordValidationError.invalid;
+        : invalidLength && _passwordRegExp.hasMatch(value ?? '')
+            ? PasswordValidationError.invalidLength
+            : !invalidLength && !_passwordRegExp.hasMatch(value ?? '')
+                ? PasswordValidationError.invalidCharacters
+                : PasswordValidationError.all;
   }
 }
+
  
 ///Password Json Converter
 class PasswordConverter implements JsonConverter<Password, Map<String, dynamic>> {
