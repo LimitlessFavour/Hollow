@@ -21,6 +21,7 @@ Map<String, dynamic> _$$_AppStateToJson(_$_AppState instance) =>
     };
 
 const _$AuthStatusEnumMap = {
+  AuthStatus.inProgress: 'inProgress',
   AuthStatus.authenticated: 'authenticated',
   AuthStatus.unauthenticated: 'unauthenticated',
   AuthStatus.restricted: 'restricted',

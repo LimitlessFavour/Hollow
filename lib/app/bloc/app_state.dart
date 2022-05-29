@@ -1,6 +1,12 @@
 part of 'app_bloc.dart';
 
-enum AuthStatus { inProgress, authenticated, unauthenticated, restricted }
+@JsonEnum()
+enum AuthStatus {
+  inProgress,
+  authenticated,
+  unauthenticated,
+  restricted,
+}
 
 @freezed
 class AppState with _$AppState {

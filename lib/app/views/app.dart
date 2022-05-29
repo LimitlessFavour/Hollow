@@ -1,7 +1,7 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hollow/app/app.dart';
 import 'package:hollow/l10n/l10n.dart';
 import 'package:hollow_design_system/hollow_design_system.dart';
@@ -10,16 +10,24 @@ class App extends StatelessWidget {
   const App({
     Key? key,
     this.devicePreviewEnabled = false,
-  }) : super(key: key);
+    required AuthenticationRepository authenticationRepository,
+  })  : _authenticationRepository = authenticationRepository,
+        super(key: key);
 
   final bool devicePreviewEnabled;
+  final AuthenticationRepository _authenticationRepository;
 
   @override
   Widget build(BuildContext context) {
     final useDevicePreview = devicePreviewEnabled && kDebugMode;
-    return BlocProvider(
-      create: (context) => AppBloc(),
-      child: _AppView(useDevicePreview: useDevicePreview),
+    return RepositoryProvider.value(
+      value: _authenticationRepository,
+      child: BlocProvider(
+        create: (context) => AppBloc(
+          authenticationRepository: _authenticationRepository,
+        ),
+        child: _AppView(useDevicePreview: useDevicePreview),
+      ),
     );
   }
 }

@@ -1,7 +1,7 @@
-import 'package:go_router/go_router.dart';
 import 'package:hollow/app/app.dart';
-import 'package:hollow/authentication/views/sign_in_page.dart';
-import 'package:hollow/authentication/views/sign_up_page.dart';
+import 'package:hollow/authentication/views/views.dart';
+
+export 'package:go_router/go_router.dart';
 
 part 'routes.dart';
 
@@ -23,12 +23,12 @@ class HollowRouter {
       GoRoute(
         name: Routes.signUp,
         path: Routes.signUp.path,
-        pageBuilder: (context, state) => SignUpPage.page(state.pageKey),
+        pageBuilder: (context, state) => SignupPage.page(state.pageKey),
       ),
       GoRoute(
         name: Routes.login,
         path: Routes.login.path,
-        pageBuilder: (context, state) => SignInPage.page(state.pageKey),
+        pageBuilder: (context, state) => LoginPage.page(state.pageKey),
       ),
     ],
   );

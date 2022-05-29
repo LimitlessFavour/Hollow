@@ -108,7 +108,6 @@ class AppBase extends StatelessWidget {
           final theme = AppTheme.of(context);
           return  OverlaySupport.global(
             child: WidgetsApp.router( 
-              key: GlobalObjectKey(this),
               routeInformationProvider: routeInformationProvider,
               routeInformationParser: routeInformationParser,
               routerDelegate: routerDelegate,
