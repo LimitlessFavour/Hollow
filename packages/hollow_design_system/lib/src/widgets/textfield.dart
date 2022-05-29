@@ -17,6 +17,7 @@ class AppTextField extends StatelessWidget {
     this.suffixIcon,
     this.fillColor,
     this.borderColor,
+    this.padding = const AppEdgeInsets.only(),
   }) : super(key: key);
 
   ///TextController
@@ -52,6 +53,8 @@ class AppTextField extends StatelessWidget {
   ///Border Color
   final Color? borderColor;
 
+  final AppEdgeInsets padding;
+
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
@@ -85,34 +88,37 @@ class AppTextField extends StatelessWidget {
         builder: (context) {
           final focusNode = Focus.of(context);
           final hasFocus = focusNode.hasFocus;
-          return TextField(
-            controller: controller,
-            onChanged: onChanged,
-            autofocus: autofocus,
-            maxLines: maxLines,
-            cursorColor: theme.colors.success,
-            keyboardType: keyboardType,
-            textAlignVertical: TextAlignVertical.center,
-            textInputAction: TextInputAction.next,
-            obscureText: obscureText,
-            decoration: InputDecoration(
-              hintText: hintText,
-              hintStyle: theme.typography.paragraph1
-                  .copyWith(color: theme.colors.grey600),
-              enabledBorder: fieldBorder,
-              focusedBorder: focusedBorder,
-              fillColor: fillColor ??
-                  (hasFocus
-                      ? theme.colors.scaffoldBackground
-                      : theme.colors.scaffoldBackground),
-              suffix: suffixIcon,
-              errorBorder: errorBorder,
-              focusedErrorBorder: errorBorder,
-              filled: true,
-              contentPadding: const EdgeInsets.fromLTRB(30, 24, 12, 12),
-            ),
-            style: theme.typography.paragraph2.copyWith(
-              color: theme.colors.grey900,
+          return AppPadding(
+            padding: padding,
+            child: TextField(
+              controller: controller,
+              onChanged: onChanged,
+              autofocus: autofocus,
+              maxLines: maxLines,
+              cursorColor: theme.colors.success,
+              keyboardType: keyboardType,
+              textAlignVertical: TextAlignVertical.center,
+              textInputAction: TextInputAction.next,
+              obscureText: obscureText,
+              decoration: InputDecoration(
+                hintText: hintText,
+                hintStyle: theme.typography.paragraph1
+                    .copyWith(color: theme.colors.grey600),
+                enabledBorder: fieldBorder,
+                focusedBorder: focusedBorder,
+                fillColor: fillColor ??
+                    (hasFocus
+                        ? theme.colors.scaffoldBackground
+                        : theme.colors.scaffoldBackground),
+                suffix: suffixIcon,
+                errorBorder: errorBorder,
+                focusedErrorBorder: errorBorder,
+                filled: true,
+                contentPadding: const EdgeInsets.fromLTRB(30, 24, 12, 12),
+              ),
+              style: theme.typography.paragraph2.copyWith(
+                color: theme.colors.grey900,
+              ),
             ),
           );
         },

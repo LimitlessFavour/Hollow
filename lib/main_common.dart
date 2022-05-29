@@ -1,3 +1,4 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:clock/clock.dart';
 
 import 'package:flutter/foundation.dart';
@@ -20,16 +21,19 @@ Future<void> mainCommon(Environment env) async {
     DeviceOrientation.portraitDown,
   ]);
 
+  final authenticationRepository = AuthenticationRepository();
+
+
   await ConfigReader.initialize(Env.configPath);
 
 
   await bootstrap(
     () async {
-      return const App(
+      return App(
         // appConfigRepository: appConfigRepository,
-        // authenticationRepository: authenticationRepository,
+        authenticationRepository: authenticationRepository,
         // locationRepository: locationRepository,
-        // devicePreviewEnabled: Env.enableDevicePreview,
+        devicePreviewEnabled: Env.enableDevicePreview,
       );
     },
   );

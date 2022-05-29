@@ -33,22 +33,22 @@ class AppColorsData extends Equatable {
         //error
         error: Color(0xFFF04438),
         //success
-        success: Color(0xFF12B76A),
+        success: Color(0xFF1B9B48),
         //primary
-        primary600: Color(0xFF7F56D9),
-        primary200: Color(0xFFB692F6),
+        primary600: Color(0xFF111834),
+        primary200: Color(0xFFB1B4BF),
         //secondary
-        secondaryBlueAccent: Color(0xFFEAECF0),
+        secondaryBlueAccent: Color(0xFF141D3E),
         secondaryYellowAccent: Color(0xFFEAECF0),
         // grey
-        grey900: Color(0xFFEAECF0),
-        grey700: Color(0xFFF2F4F7),
-        grey600: Color(0xFFF9FAFB),
+        grey900: Color(0xFF212327),
+        grey700: Color(0xFF444B59),
+        grey600: Color(0xFF667085),
         grey400: Color(0xFFF9FAFB),
-        grey100: Color(0xFFFCFCFD),
+        grey100: Color(0xFFFAFAFB),
         grey003: Color(0xFFFCFCFD),
         //icon
-        suffixIconColor: Color(0xFFFCFCFD),
+        suffixIconColor: Color(0xFF292D32),
         //background
         scaffoldBackground: Color(0xFFFAFAFB),
         white: Color(0xFFFFFFFF),
