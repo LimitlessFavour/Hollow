@@ -1,5 +1,7 @@
 import 'package:hollow/app/app.dart';
 import 'package:hollow/authentication/views/views.dart';
+import 'package:hollow/home/home.dart';
+import 'package:hollow/wallet/views/create_wallet_page.dart';
 
 export 'package:go_router/go_router.dart';
 
@@ -30,7 +32,19 @@ class HollowRouter {
         path: Routes.login.path,
         pageBuilder: (context, state) => LoginPage.page(state.pageKey),
       ),
+
+      GoRoute(
+        name: Routes.home,
+        path: Routes.home.path,
+        pageBuilder: (context, state) => HomePage.page(state.pageKey),
+      ),
+      GoRoute(
+        name: Routes.createWallet,
+        path: Routes.createWallet.path,
+        pageBuilder: (context, state) => CreateWalletPage.page(state.pageKey),
+      ),
     ],
+    
     errorPageBuilder: (context, state) => ErrorPage.page(state.pageKey),
     redirect: (state) {
       final loggedIn = appBloc.state.user.isNotEmpty;
