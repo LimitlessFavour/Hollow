@@ -14,6 +14,8 @@ Future<void> mainCommon(Environment env) async {
   debugPrint = setDebugPrint;
 
   Env.initialize(env);
+  await ConfigReader.initialize(Env.configPath);
+
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

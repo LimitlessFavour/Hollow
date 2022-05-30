@@ -36,6 +36,7 @@ class AppText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.fontStyle,
     this.decoration,
+    this.fontFamily = AppFontFamily.rubik,
   }) : super(key: key);
 
   /// AppText widget from [AppTextLevel.heading1]
@@ -51,6 +52,7 @@ class AppText extends StatelessWidget {
     this.overflow,
     this.fontStyle,
     this.decoration,
+    this.fontFamily = AppFontFamily.rubik,
   })  : level = AppTextLevel.heading1,
         super(key: key);
 
@@ -67,6 +69,7 @@ class AppText extends StatelessWidget {
     this.overflow,
     this.fontStyle,
     this.decoration,
+    this.fontFamily = AppFontFamily.rubik,
   })  : level = AppTextLevel.heading2,
         super(key: key);
 
@@ -82,6 +85,7 @@ class AppText extends StatelessWidget {
     this.overflow,
     this.fontStyle,
     this.decoration,
+    this.fontFamily = AppFontFamily.rubik,
   })  : level = AppTextLevel.heading3,
         super(key: key);
 
@@ -97,6 +101,7 @@ class AppText extends StatelessWidget {
     this.overflow,
     this.fontStyle,
     this.decoration,
+    this.fontFamily = AppFontFamily.rubik,
   })  : level = AppTextLevel.heading4,
         super(key: key);
 
@@ -112,6 +117,7 @@ class AppText extends StatelessWidget {
     this.overflow,
     this.fontStyle,
     this.decoration,
+    this.fontFamily = AppFontFamily.rubik,
   })  : level = AppTextLevel.heading5,
         super(key: key);
 
@@ -127,6 +133,7 @@ class AppText extends StatelessWidget {
     this.overflow,
     this.fontStyle,
     this.decoration,
+    this.fontFamily = AppFontFamily.rubik,
   })  : level = AppTextLevel.paragraph1,
         super(key: key);
 
@@ -142,6 +149,7 @@ class AppText extends StatelessWidget {
     this.overflow,
     this.fontStyle,
     this.decoration,
+    this.fontFamily = AppFontFamily.rubik,
   })  : level = AppTextLevel.paragraph2,
         super(key: key);
 
@@ -157,9 +165,9 @@ class AppText extends StatelessWidget {
     this.overflow,
     this.fontStyle,
     this.decoration,
+    this.fontFamily = AppFontFamily.rubik,
   })  : level = AppTextLevel.paragraph3,
         super(key: key);
-
 
   ///The data held in the Text widget
   final String data;
@@ -190,6 +198,8 @@ class AppText extends StatelessWidget {
 
   ///TextDecoration
   final TextDecoration? decoration;
+
+  final AppFontFamily fontFamily;
 
   @override
   Widget build(BuildContext context) {
@@ -226,10 +236,25 @@ class AppText extends StatelessWidget {
         fontStyle: fontStyle,
         decoration: decoration,
         decorationThickness: 0.5,
+        fontFamily: fontFamily.value,
       ),
       maxLines: maxLines,
       overflow: overflow,
       textAlign: textAlign,
     );
+  }
+}
+
+// ignore: public_member_api_docs
+enum AppFontFamily { karla, rubik }
+
+extension _AppFontFamilyX on AppFontFamily {
+  String get value {
+    switch (this) {
+      case AppFontFamily.karla:
+        return 'Karla';
+      case AppFontFamily.rubik:
+        return 'Rubik';
+    }
   }
 }

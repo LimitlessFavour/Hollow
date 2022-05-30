@@ -17,11 +17,18 @@ class AppColorsData extends Equatable {
     required this.secondaryYellowAccent,
     //grey
     required this.grey900,
+    required this.grey800,
     required this.grey700,
     required this.grey600,
     required this.grey400,
     required this.grey100,
     required this.grey003,
+    required this.orange100,
+    required this.orange500,
+    required this.blue100,
+    required this.blue500,
+    required this.purple100,
+    required this.purple500,
     //icon
     required this.suffixIconColor,
     //background
@@ -42,11 +49,19 @@ class AppColorsData extends Equatable {
         secondaryYellowAccent: Color(0xFFEAECF0),
         // grey
         grey900: Color(0xFF212327),
+        grey800: Color(0xFF333843),
         grey700: Color(0xFF444B59),
         grey600: Color(0xFF667085),
         grey400: Color(0xFFF9FAFB),
         grey100: Color(0xFFFAFAFB),
         grey003: Color(0xFFFCFCFD),
+
+        orange100: Color(0xFFFDEEDC),
+        orange500: Color(0xFFF4A84F),
+        blue100: Color(0xFFE0E6FD),
+        blue500: Color(0xFF6484F6),
+        purple100: Color(0xFFE4DEFD),
+        purple500: Color(0xFF7959F5),
         //icon
         suffixIconColor: Color(0xFF292D32),
         //background
@@ -68,10 +83,18 @@ class AppColorsData extends Equatable {
   //grey
   final Color grey900;
   final Color grey700;
+  final Color grey800;
   final Color grey600;
   final Color grey400;
   final Color grey100;
   final Color grey003;
+
+  final Color orange100;
+  final Color orange500;
+  final Color blue100;
+  final Color blue500;
+  final Color purple100;
+  final Color purple500;
   //icon
   final Color suffixIconColor;
   //background
@@ -90,13 +113,14 @@ class AppColorsData extends Equatable {
         secondaryYellowAccent.named('secondaryYellowAccent'),
         //grey
         grey900.named('grey900'),
+        grey800.named('grey800'),
         grey700.named('textgrey700'),
         grey600.named('grey600'),
         grey400.named('grey400'),
         grey100.named('grey100'),
         //icon
         suffixIconColor.named('suffixIconColor'),
-      //background
+        //background
         scaffoldBackground.named('background'),
         white.named('white'),
       ];

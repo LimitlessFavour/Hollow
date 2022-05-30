@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hollow/home/cubit/home_cubit.dart';
+import 'package:hollow/home/models/models.dart';
 import 'package:hollow/home/views/tabs/tabs.dart';
+import 'package:hollow/l10n/l10n.dart';
 import 'package:hollow_design_system/hollow_design_system.dart';
+
+
+part '../widgets/tab_button.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -32,7 +37,6 @@ class HomeView extends StatelessWidget {
     final selectedTab =
         context.select((HomeCubit cubit) => cubit.state.homeTab);
     return AppLightScaffold(
-      addSafeArea: true,
       body: IndexedStack(
         index: selectedTab.index,
         children: const [Home(), Wallets(), Transactions(), Profile()],
@@ -41,27 +45,26 @@ class HomeView extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // _HomeTabButton(
-            //   groupValue: selectedTab,
-            //   value: HomeTab.home,
-            //   icon: icons.home,
-            // ),
-            // _HomeTabButton(
-            //   groupValue: selectedTab,
-            //   value: HomeTab.wagers,
-            //   icon: icons.spade,
-            // ),
-            // _HomeTabButton(
-            //   groupValue: selectedTab,
-            //   value: HomeTab.notification,
-            //   icon: icons.bell,
-            // ),
-            // _HomeTabButton(
-            //   groupValue: selectedTab,
-            //   value: HomeTab.more,
-            //   icon: icons.more,
-            //   onPressed: () => AppFlash.showMoreBottomSheet(context),
-            // ),
+            _HomeTabButton(
+              groupValue: selectedTab,
+              value: HomeTab.home,
+              icon: icons.home,
+            ),
+            _HomeTabButton(
+              groupValue: selectedTab,
+              value: HomeTab.wallets,
+              icon: icons.wallet,
+            ),
+            _HomeTabButton(
+              groupValue: selectedTab,
+              value: HomeTab.transactions,
+              icon: icons.card,
+            ),
+            _HomeTabButton(
+              groupValue: selectedTab,
+              value: HomeTab.profile,
+              icon: icons.user,
+            ),
           ],
         ),
       ),

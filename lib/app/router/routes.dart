@@ -16,7 +16,8 @@ class Routes {
 
 extension RouteX on String {
   String get path {
-    if (this == Routes.root) {
+    if (this == Routes.home) {
+    // if (this == Routes.root) {
       return '/';
     } else {
       return '/$this';

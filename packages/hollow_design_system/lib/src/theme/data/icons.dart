@@ -44,27 +44,64 @@ class AppIconsData extends Equatable {
 
 class AppIconCharactersData extends Equatable {
   const AppIconCharactersData({
+    required this.money,
+    required this.safeHome,
+    required this.ticketStar,
+    required this.more,
+    required this.home,
+    required this.wallet,
+    required this.card,
+    required this.user,
     required this.noTransaction,
     required this.convert,
     required this.dollar,
+    required this.addIcon,
   });
 
   factory AppIconCharactersData.regular() => AppIconCharactersData(
+        money: moneySvg,
+        safeHome: safeHomeSvg,
+        ticketStar: ticketStarSvg,
+        more: moreSvg,
+        home: homeSvg,
+        wallet: walletSvg,
+        card: cardSvg,
+        user: userSvg,
         noTransaction: noTransactionSvg,
         convert: convertSvg,
         dollar: dollarSvg,
+        addIcon: addIconSvg,
       );
 
+
+  final String money;
+  final String safeHome;
+  final String ticketStar;
+  final String more;
+  final String home;
+  final String wallet;
+  final String card;
+  final String user;
   final String noTransaction;
   final String convert;
   final String dollar;
+  final String addIcon;
 
 
   @override
   List<Object?> get props => [
+        money.named('money'),
+        safeHome.named('safeHome'),
+        ticketStar.named('ticketStar'),
+        more.named('more'),
+        home.named('home'),
+        wallet.named('wallet'),
+        card.named('card'),
+        user.named('user'),
         noTransaction.named('no_transaction'),
         convert.named('convert'),
         dollar.named('dollar'),
+        addIcon.named('addIcon'),
       ];
 }
 
