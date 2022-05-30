@@ -12,12 +12,14 @@ _$_AppState _$$_AppStateFromJson(Map<String, dynamic> json) => _$_AppState(
           : User.fromJson(json['user'] as Map<String, dynamic>),
       status: $enumDecodeNullable(_$AuthStatusEnumMap, json['status']) ??
           AuthStatus.unauthenticated,
+      authToken: json['authToken'] as String?,
     );
 
 Map<String, dynamic> _$$_AppStateToJson(_$_AppState instance) =>
     <String, dynamic>{
       'user': instance.user,
       'status': _$AuthStatusEnumMap[instance.status],
+      'authToken': instance.authToken,
     };
 
 const _$AuthStatusEnumMap = {

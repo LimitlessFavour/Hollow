@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:hollow/app/app.dart';
 import 'package:hollow/bootstrap.dart';
 
-
 Future<void> mainCommon(Environment env) async {
   WidgetsFlutterBinding.ensureInitialized();
   //Replace red screen with friendlier error widget.
@@ -21,11 +20,11 @@ Future<void> mainCommon(Environment env) async {
     DeviceOrientation.portraitDown,
   ]);
 
-  final authenticationRepository = AuthenticationRepository();
-
+  final authenticationRepository = AuthenticationRepository(
+    baseUrl: ConfigReader.baseUrl,
+  );
 
   await ConfigReader.initialize(Env.configPath);
-
 
   await bootstrap(
     () async {

@@ -13,11 +13,13 @@ class AppState with _$AppState {
   const factory AppState({
     @Default(User.empty) User user,
     @Default(AuthStatus.unauthenticated) AuthStatus status,
+    String? authToken,
   }) = _AppState;
 
-  factory AppState.authenticated(User user) => AppState(
+  factory AppState.authenticated(User user, String authToken) => AppState(
         status: AuthStatus.authenticated,
         user: user,
+        authToken: authToken,
       );
 
   factory AppState.unauthenticated() => const AppState();

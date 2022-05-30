@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hollow/app/environment/config_reader.dart';
 import 'package:hollow_design_system/hollow_design_system.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:shared/shared.dart';
@@ -21,8 +22,13 @@ class AppBloc extends HydratedBloc<AppEvent, AppState> with ChangeNotifier {
         super(AppState.unauthenticated()) {
     on<_UserChanged>(_onUserChanged);
     on<_LogoutRequested>(_onLogoutRequested);
+    on<_AuthTokenUpdated>(_onAuthTokenUpdated);
   }
   final AuthenticationRepository _authenticationRepository;
+
+  void _onAuthTokenUpdated(_AuthTokenUpdated event, Emitter<AppState> emit) {
+    emit(state.copyWith(authToken: event.token));
+  }
 
   void _onUserChanged(_UserChanged event, Emitter<AppState> emit) {
     debugPrint('_onUserChanged called');
@@ -44,7 +50,11 @@ class AppBloc extends HydratedBloc<AppEvent, AppState> with ChangeNotifier {
     emit(state.copyWith(status: AuthStatus.inProgress));
     //delay for visualization.
     await Future<void>.delayed(const Duration(milliseconds: 2000));
-    unawaited(_authenticationRepository.logout());
+    await _authenticationRepository.logout(
+      authToken: state.authToken ?? ConfigReader.initialAuthToken,
+      updateTokenCallback: (String? newToken) =>
+          add(_AuthTokenUpdated(newToken)),
+    );
   }
 
   @override
