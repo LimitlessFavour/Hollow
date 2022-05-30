@@ -8,7 +8,9 @@ part of 'wallet.dart';
 
 _$_Wallet _$$_WalletFromJson(Map<String, dynamic> json) => _$_Wallet(
       type: $enumDecodeNullable(_$WalletTypeEnumMap, json['type']),
-      currency: json['currency'] as String?,
+      currency: json['currency'] == null
+          ? null
+          : Currency.fromJson(json['currency'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_WalletToJson(_$_Wallet instance) => <String, dynamic>{

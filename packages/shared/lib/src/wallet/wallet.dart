@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared/shared.dart';
 import 'package:shared/src/typedefs.dart';
 
 part 'wallet.freezed.dart';
@@ -14,7 +15,7 @@ class Wallet with _$Wallet {
   /// {@macro wallet}
   const factory Wallet({
   WalletType? type,
-  String? currency,
+  Currency? currency,
   }) = _Wallet;
 
   const Wallet._();

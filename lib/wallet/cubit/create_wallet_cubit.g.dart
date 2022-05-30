@@ -11,9 +11,17 @@ _$_CreateWalletState _$$_CreateWalletStateFromJson(Map<String, dynamic> json) =>
       wallet: json['wallet'] == null
           ? Wallet.empty
           : Wallet.fromJson(json['wallet'] as Map<String, dynamic>),
-      status:
-          $enumDecodeNullable(_$CreateWalletStatusEnumMap, json['status']) ??
-              CreateWalletStatus.initial,
+      createWalletStatus: $enumDecodeNullable(
+              _$CreateWalletStatusEnumMap, json['createWalletStatus']) ??
+          CreateWalletStatus.initial,
+      fetchCurrenciesStatus: $enumDecodeNullable(
+              _$FetchCurrenciesStatusEnumMap, json['fetchCurrenciesStatus']) ??
+          FetchCurrenciesStatus.initial,
+      availableCurrencies: (json['availableCurrencies'] as List<dynamic>?)
+              ?.map((e) => Currency.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Currency>[],
+      walletType: $enumDecodeNullable(_$WalletTypeEnumMap, json['walletType']),
       errorMessage: json['errorMessage'] as String?,
     );
 
@@ -21,7 +29,12 @@ Map<String, dynamic> _$$_CreateWalletStateToJson(
         _$_CreateWalletState instance) =>
     <String, dynamic>{
       'wallet': instance.wallet,
-      'status': _$CreateWalletStatusEnumMap[instance.status],
+      'createWalletStatus':
+          _$CreateWalletStatusEnumMap[instance.createWalletStatus],
+      'fetchCurrenciesStatus':
+          _$FetchCurrenciesStatusEnumMap[instance.fetchCurrenciesStatus],
+      'availableCurrencies': instance.availableCurrencies,
+      'walletType': _$WalletTypeEnumMap[instance.walletType],
       'errorMessage': instance.errorMessage,
     };
 
@@ -30,4 +43,16 @@ const _$CreateWalletStatusEnumMap = {
   CreateWalletStatus.creating: 'creating',
   CreateWalletStatus.successful: 'successful',
   CreateWalletStatus.failed: 'failed',
+};
+
+const _$FetchCurrenciesStatusEnumMap = {
+  FetchCurrenciesStatus.initial: 'initial',
+  FetchCurrenciesStatus.fetching: 'fetching',
+  FetchCurrenciesStatus.successful: 'successful',
+  FetchCurrenciesStatus.failed: 'failed',
+};
+
+const _$WalletTypeEnumMap = {
+  WalletType.crypto: 'crypto',
+  WalletType.fiat: 'fiat',
 };

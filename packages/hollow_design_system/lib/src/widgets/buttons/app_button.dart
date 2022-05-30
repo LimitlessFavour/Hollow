@@ -148,7 +148,7 @@ class AppButtonLayout extends StatelessWidget {
     return AnimatedContainer(
       duration: theme.durations.quick,
       decoration: BoxDecoration(
-        borderRadius: theme.radius.asBorderRadius().big,
+        borderRadius: theme.radius.asBorderRadius().mini,
         color: backgroundColor,
       ),
       padding: EdgeInsets.symmetric(

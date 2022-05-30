@@ -44,6 +44,7 @@ class AppIconsData extends Equatable {
 
 class AppIconCharactersData extends Equatable {
   const AppIconCharactersData({
+    required this.arrowLeft,
     required this.money,
     required this.safeHome,
     required this.ticketStar,
@@ -56,9 +57,11 @@ class AppIconCharactersData extends Equatable {
     required this.convert,
     required this.dollar,
     required this.addIcon,
+    required this.checkCircle,
   });
 
   factory AppIconCharactersData.regular() => AppIconCharactersData(
+        arrowLeft: arrowLeftSvg,
         money: moneySvg,
         safeHome: safeHomeSvg,
         ticketStar: ticketStarSvg,
@@ -71,9 +74,11 @@ class AppIconCharactersData extends Equatable {
         convert: convertSvg,
         dollar: dollarSvg,
         addIcon: addIconSvg,
+        checkCircle: checkCircleSvg,
       );
 
 
+  final String arrowLeft;
   final String money;
   final String safeHome;
   final String ticketStar;
@@ -86,10 +91,12 @@ class AppIconCharactersData extends Equatable {
   final String convert;
   final String dollar;
   final String addIcon;
+  final String checkCircle;
 
 
   @override
   List<Object?> get props => [
+        arrowLeft.named('arrowLeft'),
         money.named('money'),
         safeHome.named('safeHome'),
         ticketStar.named('ticketStar'),
@@ -102,6 +109,7 @@ class AppIconCharactersData extends Equatable {
         convert.named('convert'),
         dollar.named('dollar'),
         addIcon.named('addIcon'),
+        checkCircle.named('checkCircle'),
       ];
 }
 

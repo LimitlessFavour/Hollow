@@ -8,7 +8,10 @@ class AppColorsData extends Equatable {
     //error
     required this.error,
     //success
+    required this.success600,
     required this.success,
+    required this.success100,
+    required this.success50,
     //primary
     required this.primary600,
     required this.primary200,
@@ -16,6 +19,7 @@ class AppColorsData extends Equatable {
     required this.secondaryBlueAccent,
     required this.secondaryYellowAccent,
     //grey
+    required this.textCultureGrey,
     required this.grey900,
     required this.grey800,
     required this.grey700,
@@ -40,7 +44,10 @@ class AppColorsData extends Equatable {
         //error
         error: Color(0xFFF04438),
         //success
+        success600: Color(0xFF17813C),
         success: Color(0xFF1B9B48),
+        success100: Color(0xFFD1FADF),
+        success50: Color(0xFFECFDF3),
         //primary
         primary600: Color(0xFF111834),
         primary200: Color(0xFFB1B4BF),
@@ -48,6 +55,7 @@ class AppColorsData extends Equatable {
         secondaryBlueAccent: Color(0xFF141D3E),
         secondaryYellowAccent: Color(0xFFEAECF0),
         // grey
+        textCultureGrey: Color(0xFF797A7A),
         grey900: Color(0xFF212327),
         grey800: Color(0xFF333843),
         grey700: Color(0xFF444B59),
@@ -73,7 +81,10 @@ class AppColorsData extends Equatable {
   factory AppColorsData.dark() => AppColorsData.light();
 
   final Color error;
+  final Color success600;
   final Color success;
+  final Color success100;
+  final Color success50;
   //primary
   final Color primary600;
   final Color primary200;
@@ -81,6 +92,7 @@ class AppColorsData extends Equatable {
   final Color secondaryBlueAccent;
   final Color secondaryYellowAccent;
   //grey
+  final Color textCultureGrey;
   final Color grey900;
   final Color grey700;
   final Color grey800;
@@ -104,7 +116,10 @@ class AppColorsData extends Equatable {
   @override
   List<Object?> get props => [
         error.named('error'),
+        success600.named('success600'),
         success.named('success'),
+        success100.named('success100'),
+        success50.named('success50'),
         //primary
         primary600.named('primary600'),
         primary200.named('primary200'),
@@ -112,6 +127,7 @@ class AppColorsData extends Equatable {
         secondaryBlueAccent.named('secondaryBlueAccent'),
         secondaryYellowAccent.named('secondaryYellowAccent'),
         //grey
+        textCultureGrey.named('textCultureGrey'),
         grey900.named('grey900'),
         grey800.named('grey800'),
         grey700.named('textgrey700'),

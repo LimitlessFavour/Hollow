@@ -21,7 +21,7 @@ Wallet _$WalletFromJson(Map<String, dynamic> json) {
 class _$WalletTearOff {
   const _$WalletTearOff();
 
-  _Wallet call({WalletType? type, String? currency}) {
+  _Wallet call({WalletType? type, Currency? currency}) {
     return _Wallet(
       type: type,
       currency: currency,
@@ -39,7 +39,7 @@ const $Wallet = _$WalletTearOff();
 /// @nodoc
 mixin _$Wallet {
   WalletType? get type => throw _privateConstructorUsedError;
-  String? get currency => throw _privateConstructorUsedError;
+  Currency? get currency => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +50,9 @@ mixin _$Wallet {
 abstract class $WalletCopyWith<$Res> {
   factory $WalletCopyWith(Wallet value, $Res Function(Wallet) then) =
       _$WalletCopyWithImpl<$Res>;
-  $Res call({WalletType? type, String? currency});
+  $Res call({WalletType? type, Currency? currency});
+
+  $CurrencyCopyWith<$Res>? get currency;
 }
 
 /// @nodoc
@@ -74,8 +76,19 @@ class _$WalletCopyWithImpl<$Res> implements $WalletCopyWith<$Res> {
       currency: currency == freezed
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Currency?,
     ));
+  }
+
+  @override
+  $CurrencyCopyWith<$Res>? get currency {
+    if (_value.currency == null) {
+      return null;
+    }
+
+    return $CurrencyCopyWith<$Res>(_value.currency!, (value) {
+      return _then(_value.copyWith(currency: value));
+    });
   }
 }
 
@@ -84,7 +97,10 @@ abstract class _$WalletCopyWith<$Res> implements $WalletCopyWith<$Res> {
   factory _$WalletCopyWith(_Wallet value, $Res Function(_Wallet) then) =
       __$WalletCopyWithImpl<$Res>;
   @override
-  $Res call({WalletType? type, String? currency});
+  $Res call({WalletType? type, Currency? currency});
+
+  @override
+  $CurrencyCopyWith<$Res>? get currency;
 }
 
 /// @nodoc
@@ -109,7 +125,7 @@ class __$WalletCopyWithImpl<$Res> extends _$WalletCopyWithImpl<$Res>
       currency: currency == freezed
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Currency?,
     ));
   }
 }
@@ -125,7 +141,7 @@ class _$_Wallet extends _Wallet {
   @override
   final WalletType? type;
   @override
-  final String? currency;
+  final Currency? currency;
 
   @override
   String toString() {
@@ -159,7 +175,7 @@ class _$_Wallet extends _Wallet {
 }
 
 abstract class _Wallet extends Wallet {
-  const factory _Wallet({WalletType? type, String? currency}) = _$_Wallet;
+  const factory _Wallet({WalletType? type, Currency? currency}) = _$_Wallet;
   const _Wallet._() : super._();
 
   factory _Wallet.fromJson(Map<String, dynamic> json) = _$_Wallet.fromJson;
@@ -167,7 +183,7 @@ abstract class _Wallet extends Wallet {
   @override
   WalletType? get type;
   @override
-  String? get currency;
+  Currency? get currency;
   @override
   @JsonKey(ignore: true)
   _$WalletCopyWith<_Wallet> get copyWith => throw _privateConstructorUsedError;

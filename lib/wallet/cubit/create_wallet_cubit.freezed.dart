@@ -23,11 +23,18 @@ class _$CreateWalletStateTearOff {
 
   _CreateWalletState call(
       {Wallet wallet = Wallet.empty,
-      CreateWalletStatus status = CreateWalletStatus.initial,
+      CreateWalletStatus createWalletStatus = CreateWalletStatus.initial,
+      FetchCurrenciesStatus fetchCurrenciesStatus =
+          FetchCurrenciesStatus.initial,
+      List<Currency> availableCurrencies = const <Currency>[],
+      WalletType? walletType,
       String? errorMessage}) {
     return _CreateWalletState(
       wallet: wallet,
-      status: status,
+      createWalletStatus: createWalletStatus,
+      fetchCurrenciesStatus: fetchCurrenciesStatus,
+      availableCurrencies: availableCurrencies,
+      walletType: walletType,
       errorMessage: errorMessage,
     );
   }
@@ -43,7 +50,12 @@ const $CreateWalletState = _$CreateWalletStateTearOff();
 /// @nodoc
 mixin _$CreateWalletState {
   Wallet get wallet => throw _privateConstructorUsedError;
-  CreateWalletStatus get status => throw _privateConstructorUsedError;
+  CreateWalletStatus get createWalletStatus =>
+      throw _privateConstructorUsedError;
+  FetchCurrenciesStatus get fetchCurrenciesStatus =>
+      throw _privateConstructorUsedError;
+  List<Currency> get availableCurrencies => throw _privateConstructorUsedError;
+  WalletType? get walletType => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,7 +69,13 @@ abstract class $CreateWalletStateCopyWith<$Res> {
   factory $CreateWalletStateCopyWith(
           CreateWalletState value, $Res Function(CreateWalletState) then) =
       _$CreateWalletStateCopyWithImpl<$Res>;
-  $Res call({Wallet wallet, CreateWalletStatus status, String? errorMessage});
+  $Res call(
+      {Wallet wallet,
+      CreateWalletStatus createWalletStatus,
+      FetchCurrenciesStatus fetchCurrenciesStatus,
+      List<Currency> availableCurrencies,
+      WalletType? walletType,
+      String? errorMessage});
 
   $WalletCopyWith<$Res> get wallet;
 }
@@ -74,7 +92,10 @@ class _$CreateWalletStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? wallet = freezed,
-    Object? status = freezed,
+    Object? createWalletStatus = freezed,
+    Object? fetchCurrenciesStatus = freezed,
+    Object? availableCurrencies = freezed,
+    Object? walletType = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -82,10 +103,22 @@ class _$CreateWalletStateCopyWithImpl<$Res>
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
               as Wallet,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      createWalletStatus: createWalletStatus == freezed
+          ? _value.createWalletStatus
+          : createWalletStatus // ignore: cast_nullable_to_non_nullable
               as CreateWalletStatus,
+      fetchCurrenciesStatus: fetchCurrenciesStatus == freezed
+          ? _value.fetchCurrenciesStatus
+          : fetchCurrenciesStatus // ignore: cast_nullable_to_non_nullable
+              as FetchCurrenciesStatus,
+      availableCurrencies: availableCurrencies == freezed
+          ? _value.availableCurrencies
+          : availableCurrencies // ignore: cast_nullable_to_non_nullable
+              as List<Currency>,
+      walletType: walletType == freezed
+          ? _value.walletType
+          : walletType // ignore: cast_nullable_to_non_nullable
+              as WalletType?,
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -108,7 +141,13 @@ abstract class _$CreateWalletStateCopyWith<$Res>
           _CreateWalletState value, $Res Function(_CreateWalletState) then) =
       __$CreateWalletStateCopyWithImpl<$Res>;
   @override
-  $Res call({Wallet wallet, CreateWalletStatus status, String? errorMessage});
+  $Res call(
+      {Wallet wallet,
+      CreateWalletStatus createWalletStatus,
+      FetchCurrenciesStatus fetchCurrenciesStatus,
+      List<Currency> availableCurrencies,
+      WalletType? walletType,
+      String? errorMessage});
 
   @override
   $WalletCopyWith<$Res> get wallet;
@@ -128,7 +167,10 @@ class __$CreateWalletStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? wallet = freezed,
-    Object? status = freezed,
+    Object? createWalletStatus = freezed,
+    Object? fetchCurrenciesStatus = freezed,
+    Object? availableCurrencies = freezed,
+    Object? walletType = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_CreateWalletState(
@@ -136,10 +178,22 @@ class __$CreateWalletStateCopyWithImpl<$Res>
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
               as Wallet,
-      status: status == freezed
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      createWalletStatus: createWalletStatus == freezed
+          ? _value.createWalletStatus
+          : createWalletStatus // ignore: cast_nullable_to_non_nullable
               as CreateWalletStatus,
+      fetchCurrenciesStatus: fetchCurrenciesStatus == freezed
+          ? _value.fetchCurrenciesStatus
+          : fetchCurrenciesStatus // ignore: cast_nullable_to_non_nullable
+              as FetchCurrenciesStatus,
+      availableCurrencies: availableCurrencies == freezed
+          ? _value.availableCurrencies
+          : availableCurrencies // ignore: cast_nullable_to_non_nullable
+              as List<Currency>,
+      walletType: walletType == freezed
+          ? _value.walletType
+          : walletType // ignore: cast_nullable_to_non_nullable
+              as WalletType?,
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -153,7 +207,10 @@ class __$CreateWalletStateCopyWithImpl<$Res>
 class _$_CreateWalletState implements _CreateWalletState {
   const _$_CreateWalletState(
       {this.wallet = Wallet.empty,
-      this.status = CreateWalletStatus.initial,
+      this.createWalletStatus = CreateWalletStatus.initial,
+      this.fetchCurrenciesStatus = FetchCurrenciesStatus.initial,
+      this.availableCurrencies = const <Currency>[],
+      this.walletType,
       this.errorMessage});
 
   factory _$_CreateWalletState.fromJson(Map<String, dynamic> json) =>
@@ -164,13 +221,21 @@ class _$_CreateWalletState implements _CreateWalletState {
   final Wallet wallet;
   @JsonKey()
   @override
-  final CreateWalletStatus status;
+  final CreateWalletStatus createWalletStatus;
+  @JsonKey()
+  @override
+  final FetchCurrenciesStatus fetchCurrenciesStatus;
+  @JsonKey()
+  @override
+  final List<Currency> availableCurrencies;
+  @override
+  final WalletType? walletType;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'CreateWalletState(wallet: $wallet, status: $status, errorMessage: $errorMessage)';
+    return 'CreateWalletState(wallet: $wallet, createWalletStatus: $createWalletStatus, fetchCurrenciesStatus: $fetchCurrenciesStatus, availableCurrencies: $availableCurrencies, walletType: $walletType, errorMessage: $errorMessage)';
   }
 
   @override
@@ -179,7 +244,14 @@ class _$_CreateWalletState implements _CreateWalletState {
         (other.runtimeType == runtimeType &&
             other is _CreateWalletState &&
             const DeepCollectionEquality().equals(other.wallet, wallet) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.createWalletStatus, createWalletStatus) &&
+            const DeepCollectionEquality()
+                .equals(other.fetchCurrenciesStatus, fetchCurrenciesStatus) &&
+            const DeepCollectionEquality()
+                .equals(other.availableCurrencies, availableCurrencies) &&
+            const DeepCollectionEquality()
+                .equals(other.walletType, walletType) &&
             const DeepCollectionEquality()
                 .equals(other.errorMessage, errorMessage));
   }
@@ -188,7 +260,10 @@ class _$_CreateWalletState implements _CreateWalletState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(wallet),
-      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(createWalletStatus),
+      const DeepCollectionEquality().hash(fetchCurrenciesStatus),
+      const DeepCollectionEquality().hash(availableCurrencies),
+      const DeepCollectionEquality().hash(walletType),
       const DeepCollectionEquality().hash(errorMessage));
 
   @JsonKey(ignore: true)
@@ -205,7 +280,10 @@ class _$_CreateWalletState implements _CreateWalletState {
 abstract class _CreateWalletState implements CreateWalletState {
   const factory _CreateWalletState(
       {Wallet wallet,
-      CreateWalletStatus status,
+      CreateWalletStatus createWalletStatus,
+      FetchCurrenciesStatus fetchCurrenciesStatus,
+      List<Currency> availableCurrencies,
+      WalletType? walletType,
       String? errorMessage}) = _$_CreateWalletState;
 
   factory _CreateWalletState.fromJson(Map<String, dynamic> json) =
@@ -214,7 +292,13 @@ abstract class _CreateWalletState implements CreateWalletState {
   @override
   Wallet get wallet;
   @override
-  CreateWalletStatus get status;
+  CreateWalletStatus get createWalletStatus;
+  @override
+  FetchCurrenciesStatus get fetchCurrenciesStatus;
+  @override
+  List<Currency> get availableCurrencies;
+  @override
+  WalletType? get walletType;
   @override
   String? get errorMessage;
   @override
