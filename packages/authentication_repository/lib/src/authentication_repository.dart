@@ -1,3 +1,6 @@
+import 'package:authentication_repository/src/authentication_client.dart';
+import 'package:shared/shared.dart';
+
 /// {@template authentication_repository}
 /// Authentication Repository
 /// {@endtemplate}
@@ -5,21 +8,57 @@
 
 class AuthenticationRepository {
   /// {@macro authentication_repository}
-  AuthenticationRepository();
+  AuthenticationRepository({required this.baseUrl, AuthClient? authClient})
+      : _authClient = authClient ?? AuthClient(baseUrl);
 
-  Future<void> signup({
+  /// Base url for api endpoints
+  final String baseUrl;
+
+  final AuthClient _authClient;
+
+  Future<Result<Exception, User>> signup({
     required String name,
     required String lastname,
     required String username,
     required String phonenumber,
     required String email,
     required String password,
-  }) async {}
+    required void Function(String newToken) updateTokenCallback,
+  }) async {
+    final body = <String, dynamic>{
+      'name': name,
+      'lastname': lastname,
+      'username': username,
+      'phonenumber': phonenumber,
+      'email': email,
+      'password': password,
+    };
 
-  Future<void> login({
+    return _authClient.sendSignupData(
+      data: body,
+      updateTokenCallback: updateTokenCallback,
+    );
+  }
+
+  Future<Result<Exception, User>> login({
     required String email,
     required String password,
-  }) async {}
+    required void Function(String? newToken) updateTokenCallback,
+  }) async {
+    final body = <String, dynamic>{'email': email, 'password': password};
+    return _authClient.sendLoginData(
+      data: body,
+      updateTokenCallback: updateTokenCallback,
+    );
+  }
 
-  Future<void> logout() async {}
+  Future<Result<Exception, User>> logout({
+    required String authToken,
+    required void Function(String? newToken) updateTokenCallback,
+  }) async {
+    return _authClient.sendLogoutData(
+      updateTokenCallback: updateTokenCallback,
+      authToken: authToken,
+    );
+  }
 }

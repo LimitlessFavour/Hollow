@@ -12,7 +12,6 @@ abstract class ConfigReader {
 
   static String get initialAuthToken => _config['authToken'] as String;
 
-  // static String getSecretKey() {
-  //   return _config['secretKey'] as String;
-  // }
+  static String get baseUrl => _config['baseUrl'] as String;
+
 }

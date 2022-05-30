@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hollow/app/bloc/app_bloc.dart';
 import 'package:shared/shared.dart';
 
 part 'sign_up_cubit.freezed.dart';
@@ -12,9 +13,11 @@ part 'sign_up_cubit.g.dart';
 part 'sign_up_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
-  SignupCubit(this._authenticationRepository) : super(const SignupState());
+  SignupCubit(this._authenticationRepository, this._appBloc)
+      : super(const SignupState());
 
   final AuthenticationRepository _authenticationRepository;
+  final AppBloc _appBloc;
 
   void nameChanged(String value) {
     final name = Name.dirty(value);
@@ -140,14 +143,16 @@ class SignupCubit extends Cubit<SignupState> {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      await _authenticationRepository.signup(
-        name: state.name.value,
-        lastname: state.lastname.value,
-        username: state.username.value,
-        phonenumber: state.phone.value,
-        email: state.email.value,
-        password: state.password.value,
-      );
+      // await _authenticationRepository.signup(
+      //   name: state.name.value,
+      //   lastname: state.lastname.value,
+      //   username: state.username.value,
+      //   phonenumber: state.phone.value,
+      //   email: state.email.value,
+      //   password: state.password.value,
+        // updateTokenCallback: (String newToken) =>
+        //     _appBloc.add(AuthTokenUpdated(newToken)),
+      // );
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     }
     // on SignUpWithEmailAndPasswordFailure catch (e) {

@@ -1,3 +1,4 @@
 {
-    "secret_c": "SECRET_C_HERE"
+    "auth_token": "<PRODUCTION_TOKEN_HERE>",
+    "baseUrl": "<PRODUCTION_ENDPOINT_BASEURL_HERE"
 }

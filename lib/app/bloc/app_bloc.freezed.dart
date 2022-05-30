@@ -26,6 +26,12 @@ class _$AppEventTearOff {
   _LogoutRequested logoutRequested() {
     return const _LogoutRequested();
   }
+
+  _AuthTokenUpdated authTokenUpdated(String? token) {
+    return _AuthTokenUpdated(
+      token,
+    );
+  }
 }
 
 /// @nodoc
@@ -37,18 +43,21 @@ mixin _$AppEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) userChanged,
     required TResult Function() logoutRequested,
+    required TResult Function(String? token) authTokenUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? userChanged,
     TResult Function()? logoutRequested,
+    TResult Function(String? token)? authTokenUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? userChanged,
     TResult Function()? logoutRequested,
+    TResult Function(String? token)? authTokenUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,18 +65,21 @@ mixin _$AppEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_UserChanged value) userChanged,
     required TResult Function(_LogoutRequested value) logoutRequested,
+    required TResult Function(_AuthTokenUpdated value) authTokenUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UserChanged value)? userChanged,
     TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_AuthTokenUpdated value)? authTokenUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UserChanged value)? userChanged,
     TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_AuthTokenUpdated value)? authTokenUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,6 +175,7 @@ class _$_UserChanged implements _UserChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) userChanged,
     required TResult Function() logoutRequested,
+    required TResult Function(String? token) authTokenUpdated,
   }) {
     return userChanged(user);
   }
@@ -172,6 +185,7 @@ class _$_UserChanged implements _UserChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? userChanged,
     TResult Function()? logoutRequested,
+    TResult Function(String? token)? authTokenUpdated,
   }) {
     return userChanged?.call(user);
   }
@@ -181,6 +195,7 @@ class _$_UserChanged implements _UserChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? userChanged,
     TResult Function()? logoutRequested,
+    TResult Function(String? token)? authTokenUpdated,
     required TResult orElse(),
   }) {
     if (userChanged != null) {
@@ -194,6 +209,7 @@ class _$_UserChanged implements _UserChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_UserChanged value) userChanged,
     required TResult Function(_LogoutRequested value) logoutRequested,
+    required TResult Function(_AuthTokenUpdated value) authTokenUpdated,
   }) {
     return userChanged(this);
   }
@@ -203,6 +219,7 @@ class _$_UserChanged implements _UserChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UserChanged value)? userChanged,
     TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_AuthTokenUpdated value)? authTokenUpdated,
   }) {
     return userChanged?.call(this);
   }
@@ -212,6 +229,7 @@ class _$_UserChanged implements _UserChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UserChanged value)? userChanged,
     TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_AuthTokenUpdated value)? authTokenUpdated,
     required TResult orElse(),
   }) {
     if (userChanged != null) {
@@ -272,6 +290,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult when<TResult extends Object?>({
     required TResult Function(User user) userChanged,
     required TResult Function() logoutRequested,
+    required TResult Function(String? token) authTokenUpdated,
   }) {
     return logoutRequested();
   }
@@ -281,6 +300,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(User user)? userChanged,
     TResult Function()? logoutRequested,
+    TResult Function(String? token)? authTokenUpdated,
   }) {
     return logoutRequested?.call();
   }
@@ -290,6 +310,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(User user)? userChanged,
     TResult Function()? logoutRequested,
+    TResult Function(String? token)? authTokenUpdated,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -303,6 +324,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(_UserChanged value) userChanged,
     required TResult Function(_LogoutRequested value) logoutRequested,
+    required TResult Function(_AuthTokenUpdated value) authTokenUpdated,
   }) {
     return logoutRequested(this);
   }
@@ -312,6 +334,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UserChanged value)? userChanged,
     TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_AuthTokenUpdated value)? authTokenUpdated,
   }) {
     return logoutRequested?.call(this);
   }
@@ -321,6 +344,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UserChanged value)? userChanged,
     TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_AuthTokenUpdated value)? authTokenUpdated,
     required TResult orElse(),
   }) {
     if (logoutRequested != null) {
@@ -334,6 +358,145 @@ abstract class _LogoutRequested implements AppEvent {
   const factory _LogoutRequested() = _$_LogoutRequested;
 }
 
+/// @nodoc
+abstract class _$AuthTokenUpdatedCopyWith<$Res> {
+  factory _$AuthTokenUpdatedCopyWith(
+          _AuthTokenUpdated value, $Res Function(_AuthTokenUpdated) then) =
+      __$AuthTokenUpdatedCopyWithImpl<$Res>;
+  $Res call({String? token});
+}
+
+/// @nodoc
+class __$AuthTokenUpdatedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
+    implements _$AuthTokenUpdatedCopyWith<$Res> {
+  __$AuthTokenUpdatedCopyWithImpl(
+      _AuthTokenUpdated _value, $Res Function(_AuthTokenUpdated) _then)
+      : super(_value, (v) => _then(v as _AuthTokenUpdated));
+
+  @override
+  _AuthTokenUpdated get _value => super._value as _AuthTokenUpdated;
+
+  @override
+  $Res call({
+    Object? token = freezed,
+  }) {
+    return _then(_AuthTokenUpdated(
+      token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_AuthTokenUpdated implements _AuthTokenUpdated {
+  const _$_AuthTokenUpdated(this.token);
+
+  @override
+  final String? token;
+
+  @override
+  String toString() {
+    return 'AppEvent.authTokenUpdated(token: $token)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _AuthTokenUpdated &&
+            const DeepCollectionEquality().equals(other.token, token));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(token));
+
+  @JsonKey(ignore: true)
+  @override
+  _$AuthTokenUpdatedCopyWith<_AuthTokenUpdated> get copyWith =>
+      __$AuthTokenUpdatedCopyWithImpl<_AuthTokenUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(User user) userChanged,
+    required TResult Function() logoutRequested,
+    required TResult Function(String? token) authTokenUpdated,
+  }) {
+    return authTokenUpdated(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(User user)? userChanged,
+    TResult Function()? logoutRequested,
+    TResult Function(String? token)? authTokenUpdated,
+  }) {
+    return authTokenUpdated?.call(token);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User user)? userChanged,
+    TResult Function()? logoutRequested,
+    TResult Function(String? token)? authTokenUpdated,
+    required TResult orElse(),
+  }) {
+    if (authTokenUpdated != null) {
+      return authTokenUpdated(token);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UserChanged value) userChanged,
+    required TResult Function(_LogoutRequested value) logoutRequested,
+    required TResult Function(_AuthTokenUpdated value) authTokenUpdated,
+  }) {
+    return authTokenUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UserChanged value)? userChanged,
+    TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_AuthTokenUpdated value)? authTokenUpdated,
+  }) {
+    return authTokenUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UserChanged value)? userChanged,
+    TResult Function(_LogoutRequested value)? logoutRequested,
+    TResult Function(_AuthTokenUpdated value)? authTokenUpdated,
+    required TResult orElse(),
+  }) {
+    if (authTokenUpdated != null) {
+      return authTokenUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AuthTokenUpdated implements AppEvent {
+  const factory _AuthTokenUpdated(String? token) = _$_AuthTokenUpdated;
+
+  String? get token;
+  @JsonKey(ignore: true)
+  _$AuthTokenUpdatedCopyWith<_AuthTokenUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 AppState _$AppStateFromJson(Map<String, dynamic> json) {
   return _AppState.fromJson(json);
 }
@@ -344,10 +507,12 @@ class _$AppStateTearOff {
 
   _AppState call(
       {User user = User.empty,
-      AuthStatus status = AuthStatus.unauthenticated}) {
+      AuthStatus status = AuthStatus.unauthenticated,
+      String? authToken}) {
     return _AppState(
       user: user,
       status: status,
+      authToken: authToken,
     );
   }
 
@@ -363,6 +528,7 @@ const $AppState = _$AppStateTearOff();
 mixin _$AppState {
   User get user => throw _privateConstructorUsedError;
   AuthStatus get status => throw _privateConstructorUsedError;
+  String? get authToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -374,7 +540,7 @@ mixin _$AppState {
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res>;
-  $Res call({User user, AuthStatus status});
+  $Res call({User user, AuthStatus status, String? authToken});
 
   $UserCopyWith<$Res> get user;
 }
@@ -391,6 +557,7 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
   $Res call({
     Object? user = freezed,
     Object? status = freezed,
+    Object? authToken = freezed,
   }) {
     return _then(_value.copyWith(
       user: user == freezed
@@ -401,6 +568,10 @@ class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AuthStatus,
+      authToken: authToken == freezed
+          ? _value.authToken
+          : authToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -417,7 +588,7 @@ abstract class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) then) =
       __$AppStateCopyWithImpl<$Res>;
   @override
-  $Res call({User user, AuthStatus status});
+  $Res call({User user, AuthStatus status, String? authToken});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -436,6 +607,7 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
   $Res call({
     Object? user = freezed,
     Object? status = freezed,
+    Object? authToken = freezed,
   }) {
     return _then(_AppState(
       user: user == freezed
@@ -446,6 +618,10 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as AuthStatus,
+      authToken: authToken == freezed
+          ? _value.authToken
+          : authToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -454,7 +630,9 @@ class __$AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AppState implements _AppState {
   const _$_AppState(
-      {this.user = User.empty, this.status = AuthStatus.unauthenticated});
+      {this.user = User.empty,
+      this.status = AuthStatus.unauthenticated,
+      this.authToken});
 
   factory _$_AppState.fromJson(Map<String, dynamic> json) =>
       _$$_AppStateFromJson(json);
@@ -465,10 +643,12 @@ class _$_AppState implements _AppState {
   @JsonKey()
   @override
   final AuthStatus status;
+  @override
+  final String? authToken;
 
   @override
   String toString() {
-    return 'AppState(user: $user, status: $status)';
+    return 'AppState(user: $user, status: $status, authToken: $authToken)';
   }
 
   @override
@@ -477,14 +657,16 @@ class _$_AppState implements _AppState {
         (other.runtimeType == runtimeType &&
             other is _AppState &&
             const DeepCollectionEquality().equals(other.user, user) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.authToken, authToken));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(user),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(authToken));
 
   @JsonKey(ignore: true)
   @override
@@ -498,7 +680,8 @@ class _$_AppState implements _AppState {
 }
 
 abstract class _AppState implements AppState {
-  const factory _AppState({User user, AuthStatus status}) = _$_AppState;
+  const factory _AppState({User user, AuthStatus status, String? authToken}) =
+      _$_AppState;
 
   factory _AppState.fromJson(Map<String, dynamic> json) = _$_AppState.fromJson;
 
@@ -506,6 +689,8 @@ abstract class _AppState implements AppState {
   User get user;
   @override
   AuthStatus get status;
+  @override
+  String? get authToken;
   @override
   @JsonKey(ignore: true)
   _$AppStateCopyWith<_AppState> get copyWith =>
