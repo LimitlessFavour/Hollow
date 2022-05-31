@@ -5,6 +5,8 @@ import 'package:hollow_design_system/src/widgets/base/tap.dart';
 
 bool _nullAction = false;
 late Color? _buttonColor;
+late Color? _borderColor;
+late Color? _textColor;
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -13,6 +15,8 @@ class AppButton extends StatelessWidget {
     this.title,
     this.onTap,
     this.color,
+    this.borderColor,
+    this.textColor,
     this.mainAxisSize = MainAxisSize.min,
   })  : assert(icon != null || title != null, ''),
         super(key: key);
@@ -22,11 +26,15 @@ class AppButton extends StatelessWidget {
   final MainAxisSize mainAxisSize;
   final VoidCallback? onTap;
   final Color? color;
+  final Color? borderColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
     _nullAction = onTap == null;
     _buttonColor = color;
+    _borderColor = borderColor;
+    _textColor = textColor;
     return AppTapBuilder(
       onTap: onTap,
       builder: (context, state) {
@@ -149,6 +157,9 @@ class AppButtonLayout extends StatelessWidget {
       duration: theme.durations.quick,
       decoration: BoxDecoration(
         borderRadius: theme.radius.asBorderRadius().mini,
+        border: Border.all(
+          color: _borderColor ?? backgroundColor!,
+        ),
         color: backgroundColor,
       ),
       padding: EdgeInsets.symmetric(
@@ -162,7 +173,7 @@ class AppButtonLayout extends StatelessWidget {
           if (title != null)
             AppText.paragraph1(
               title,
-              color: theme.colors.white,
+              color: _textColor ?? theme.colors.white,
               fontWeight: FontWeight.w500,
             ),
           if (hasBoth) const AppGap.semiSmall(),

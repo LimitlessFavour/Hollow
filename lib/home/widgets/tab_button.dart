@@ -25,17 +25,16 @@ class _HomeTabButton extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const AppGap.semiBig(),
           AppIcon.regular(
             icon,
             color: color,
           ),
-          const AppGap.small(),
-          AppText.paragraph3(
-            value.text(l10n),
-            color: color,
-            textAlign: TextAlign.center,
-          ),
+          // const AppGap.small(),
+          // AppText.paragraph3(
+          //   value.text(l10n),
+          //   color: color,
+          //   textAlign: TextAlign.center,
+          // ),
         ],
       ),
     );

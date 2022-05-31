@@ -1,14 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hollow/home/cubit/home_cubit.dart';
-import 'package:hollow/home/models/models.dart';
 import 'package:hollow/home/views/tabs/tabs.dart';
 import 'package:hollow/l10n/l10n.dart';
 import 'package:hollow_design_system/hollow_design_system.dart';
 
-
 part '../widgets/tab_button.dart';
-
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -41,9 +38,14 @@ class HomeView extends StatelessWidget {
         index: selectedTab.index,
         children: const [Home(), Wallets(), Transactions(), Profile()],
       ),
-      floatingBar: SizedBox(
+      floatingBar: AppContainer(
+        padding: const AppEdgeInsets.big(),
+        decoration: BoxDecoration(
+          color: theme.colors.white,
+          borderRadius: theme.radius.asBorderRadius().regular,
+        ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _HomeTabButton(
               groupValue: selectedTab,

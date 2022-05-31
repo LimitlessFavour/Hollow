@@ -95,9 +95,9 @@ class AppLightScaffold extends StatelessWidget {
           body,
           if (floatingBar != null)
             AnimatedPositioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
+              left: theme.spacing.semiBig,
+              right: theme.spacing.semiBig,
+              bottom: theme.spacing.big,
               duration: theme.durations.regular,
               child: floatingBar,
             ),

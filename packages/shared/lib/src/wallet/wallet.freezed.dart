@@ -21,7 +21,10 @@ Wallet _$WalletFromJson(Map<String, dynamic> json) {
 class _$WalletTearOff {
   const _$WalletTearOff();
 
-  _Wallet call({WalletType? type, Currency? currency}) {
+  _Wallet call(
+      {WalletType? type,
+      @JsonKey(fromJson: currencyFromJson, toJson: currencyToJson)
+          Currency? currency}) {
     return _Wallet(
       type: type,
       currency: currency,
@@ -39,6 +42,7 @@ const $Wallet = _$WalletTearOff();
 /// @nodoc
 mixin _$Wallet {
   WalletType? get type => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: currencyFromJson, toJson: currencyToJson)
   Currency? get currency => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,7 +54,10 @@ mixin _$Wallet {
 abstract class $WalletCopyWith<$Res> {
   factory $WalletCopyWith(Wallet value, $Res Function(Wallet) then) =
       _$WalletCopyWithImpl<$Res>;
-  $Res call({WalletType? type, Currency? currency});
+  $Res call(
+      {WalletType? type,
+      @JsonKey(fromJson: currencyFromJson, toJson: currencyToJson)
+          Currency? currency});
 
   $CurrencyCopyWith<$Res>? get currency;
 }
@@ -97,7 +104,10 @@ abstract class _$WalletCopyWith<$Res> implements $WalletCopyWith<$Res> {
   factory _$WalletCopyWith(_Wallet value, $Res Function(_Wallet) then) =
       __$WalletCopyWithImpl<$Res>;
   @override
-  $Res call({WalletType? type, Currency? currency});
+  $Res call(
+      {WalletType? type,
+      @JsonKey(fromJson: currencyFromJson, toJson: currencyToJson)
+          Currency? currency});
 
   @override
   $CurrencyCopyWith<$Res>? get currency;
@@ -133,7 +143,11 @@ class __$WalletCopyWithImpl<$Res> extends _$WalletCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Wallet extends _Wallet {
-  const _$_Wallet({this.type, this.currency}) : super._();
+  const _$_Wallet(
+      {this.type,
+      @JsonKey(fromJson: currencyFromJson, toJson: currencyToJson)
+          this.currency})
+      : super._();
 
   factory _$_Wallet.fromJson(Map<String, dynamic> json) =>
       _$$_WalletFromJson(json);
@@ -141,6 +155,7 @@ class _$_Wallet extends _Wallet {
   @override
   final WalletType? type;
   @override
+  @JsonKey(fromJson: currencyFromJson, toJson: currencyToJson)
   final Currency? currency;
 
   @override
@@ -175,7 +190,10 @@ class _$_Wallet extends _Wallet {
 }
 
 abstract class _Wallet extends Wallet {
-  const factory _Wallet({WalletType? type, Currency? currency}) = _$_Wallet;
+  const factory _Wallet(
+      {WalletType? type,
+      @JsonKey(fromJson: currencyFromJson, toJson: currencyToJson)
+          Currency? currency}) = _$_Wallet;
   const _Wallet._() : super._();
 
   factory _Wallet.fromJson(Map<String, dynamic> json) = _$_Wallet.fromJson;
@@ -183,6 +201,7 @@ abstract class _Wallet extends Wallet {
   @override
   WalletType? get type;
   @override
+  @JsonKey(fromJson: currencyFromJson, toJson: currencyToJson)
   Currency? get currency;
   @override
   @JsonKey(ignore: true)

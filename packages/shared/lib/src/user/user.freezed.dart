@@ -28,7 +28,9 @@ class _$UserTearOff {
       String? middleName,
       String? lastname,
       String? username,
-      String? phoneNumber}) {
+      String? phoneNumber,
+      @JsonKey(toJson: walletsToJson, fromJson: walletsFromJson)
+          List<Wallet> wallets = const <Wallet>[]}) {
     return _User(
       userId: userId,
       email: email,
@@ -37,6 +39,7 @@ class _$UserTearOff {
       lastname: lastname,
       username: username,
       phoneNumber: phoneNumber,
+      wallets: wallets,
     );
   }
 
@@ -57,6 +60,8 @@ mixin _$User {
   String? get lastname => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(toJson: walletsToJson, fromJson: walletsFromJson)
+  List<Wallet> get wallets => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,7 +79,9 @@ abstract class $UserCopyWith<$Res> {
       String? middleName,
       String? lastname,
       String? username,
-      String? phoneNumber});
+      String? phoneNumber,
+      @JsonKey(toJson: walletsToJson, fromJson: walletsFromJson)
+          List<Wallet> wallets});
 }
 
 /// @nodoc
@@ -94,6 +101,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? lastname = freezed,
     Object? username = freezed,
     Object? phoneNumber = freezed,
+    Object? wallets = freezed,
   }) {
     return _then(_value.copyWith(
       userId: userId == freezed
@@ -124,6 +132,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      wallets: wallets == freezed
+          ? _value.wallets
+          : wallets // ignore: cast_nullable_to_non_nullable
+              as List<Wallet>,
     ));
   }
 }
@@ -140,7 +152,9 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? middleName,
       String? lastname,
       String? username,
-      String? phoneNumber});
+      String? phoneNumber,
+      @JsonKey(toJson: walletsToJson, fromJson: walletsFromJson)
+          List<Wallet> wallets});
 }
 
 /// @nodoc
@@ -161,6 +175,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? lastname = freezed,
     Object? username = freezed,
     Object? phoneNumber = freezed,
+    Object? wallets = freezed,
   }) {
     return _then(_User(
       userId: userId == freezed
@@ -191,6 +206,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      wallets: wallets == freezed
+          ? _value.wallets
+          : wallets // ignore: cast_nullable_to_non_nullable
+              as List<Wallet>,
     ));
   }
 }
@@ -205,7 +224,9 @@ class _$_User extends _User {
       this.middleName,
       this.lastname,
       this.username,
-      this.phoneNumber})
+      this.phoneNumber,
+      @JsonKey(toJson: walletsToJson, fromJson: walletsFromJson)
+          this.wallets = const <Wallet>[]})
       : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -224,10 +245,13 @@ class _$_User extends _User {
   final String? username;
   @override
   final String? phoneNumber;
+  @override
+  @JsonKey(toJson: walletsToJson, fromJson: walletsFromJson)
+  final List<Wallet> wallets;
 
   @override
   String toString() {
-    return 'User(userId: $userId, email: $email, firstname: $firstname, middleName: $middleName, lastname: $lastname, username: $username, phoneNumber: $phoneNumber)';
+    return 'User(userId: $userId, email: $email, firstname: $firstname, middleName: $middleName, lastname: $lastname, username: $username, phoneNumber: $phoneNumber, wallets: $wallets)';
   }
 
   @override
@@ -243,7 +267,8 @@ class _$_User extends _User {
             const DeepCollectionEquality().equals(other.lastname, lastname) &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality()
-                .equals(other.phoneNumber, phoneNumber));
+                .equals(other.phoneNumber, phoneNumber) &&
+            const DeepCollectionEquality().equals(other.wallets, wallets));
   }
 
   @override
@@ -255,7 +280,8 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(middleName),
       const DeepCollectionEquality().hash(lastname),
       const DeepCollectionEquality().hash(username),
-      const DeepCollectionEquality().hash(phoneNumber));
+      const DeepCollectionEquality().hash(phoneNumber),
+      const DeepCollectionEquality().hash(wallets));
 
   @JsonKey(ignore: true)
   @override
@@ -276,7 +302,9 @@ abstract class _User extends User {
       String? middleName,
       String? lastname,
       String? username,
-      String? phoneNumber}) = _$_User;
+      String? phoneNumber,
+      @JsonKey(toJson: walletsToJson, fromJson: walletsFromJson)
+          List<Wallet> wallets}) = _$_User;
   const _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -295,6 +323,9 @@ abstract class _User extends User {
   String? get username;
   @override
   String? get phoneNumber;
+  @override
+  @JsonKey(toJson: walletsToJson, fromJson: walletsFromJson)
+  List<Wallet> get wallets;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

@@ -16,7 +16,7 @@ class Currency with _$Currency {
 
   const Currency._();
 
-  /// Currency instance from JSON.
+  // /// Currency instance from JSON.
   factory Currency.fromJson(JSON json) => _$CurrencyFromJson(json);
 
   /// Empty Currency

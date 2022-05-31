@@ -5,6 +5,7 @@ import 'package:hollow/l10n/l10n.dart';
 import 'package:hollow/wallet/cubit/create_wallet_cubit.dart';
 import 'package:hollow_design_system/hollow_design_system.dart';
 import 'package:shared/shared.dart';
+import 'package:wallet_repository/wallet_repository.dart';
 
 class CreateWalletPage extends StatelessWidget {
   const CreateWalletPage({Key? key}) : super(key: key);
@@ -16,9 +17,21 @@ class CreateWalletPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => CreateWalletCubit(),
-      child: const _CreateWalletView(),
+    //*creating the WalletRepository with a DemoClient for illustration
+    //* actual implementation using an apiclient is also provided
+    //* both demo and actual implementation extend a baseclient contract.
+    final walletRepository = WalletRepository(
+      walletClient: DemoWalletClient(ConfigReader.baseUrl),
+    );
+    return RepositoryProvider.value(
+      value: walletRepository,
+      child: BlocProvider(
+        create: (_) => CreateWalletCubit(
+          walletRepository,
+          context.read<AppBloc>(),
+        ),
+        child: const _CreateWalletView(),
+      ),
     );
   }
 }
@@ -117,9 +130,10 @@ class _CreateWalletView extends StatelessWidget {
             const AppGap.regular(),
             AppButton(
               title: l10n.back_to_home,
-              onTap: () {
-                context.pushNamed(Routes.home);
-              },
+              color: theme.colors.white,
+              textColor: theme.colors.primary600,
+              borderColor: theme.colors.primary200.withOpacity(0.6),
+              onTap: () => context.goNamed(Routes.home),
             ),
           ],
         ),
@@ -138,7 +152,11 @@ class _BackButton extends StatelessWidget {
     return AppBackButton(
       onPressed: () {
         final cubit = context.read<CreateWalletCubit>();
+        final walletCurrencySelected = cubit.state.wallet.currency != null;
         final walletTypeSelected = cubit.state.wallet.type != null;
+        if (walletCurrencySelected) {
+          cubit.unselectWalletCurrency();
+        }
         if (walletTypeSelected) {
           cubit.unselectWalletType();
         } else {
@@ -287,7 +305,7 @@ class _WalletTypeDropdown extends StatelessWidget {
           l10n.choose_wallet,
           color: theme.colors.grey600,
         ),
-        const AppGap.small(),
+        const AppGap.semiSmall(),
         DropdownButtonHideUnderline(
           child: InputDecorator(
             decoration: dropdownDecoration(theme),
@@ -346,49 +364,53 @@ class _WalletCurrencyDropdownState extends State<_WalletCurrencyDropdown> {
           l10n.select_country_currency,
           color: theme.colors.grey600,
         ),
-        const AppGap.small(),
+        const AppGap.semiSmall(),
         BlocBuilder<CreateWalletCubit, CreateWalletState>(
           builder: (BuildContext context, CreateWalletState state) {
             final fetching = state.fetchCurrenciesStatus.isFetching;
             final currencies = state.availableCurrencies;
             final selectedCurrency = state.wallet.currency;
-            return AppPadding(
-              padding: const AppEdgeInsets.only(
-                top: AppGapSize.regular,
-                bottom: AppGapSize.regular,
-              ),
-              child: DropdownButtonHideUnderline(
-                child: InputDecorator(
-                  decoration: dropdownDecoration(theme).copyWith(
-                    hintText: fetching
-                        ? 'l10n.fetching currencies'
-                        : l10n.select_country_currency,
-                  ),
-                  isEmpty: selectedCurrency == null,
-                  child: DropdownButton<Currency>(
-                    value: selectedCurrency,
-                    isDense: true,
-                    isExpanded: true,
-                    onChanged: !fetching
-                        ? (Currency? currency) => context
-                            .read<CreateWalletCubit>()
-                            .selectWalletCurrency(currency)
-                        : null,
-                    items: currencies.map((Currency currency) {
-                      return DropdownMenuItem<Currency>(
-                        value: currency,
-                        child: Row(
-                          children: [
-                            AppText.paragraph2(
-                              currency.name ?? ''.trim(),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
+            return DropdownButtonHideUnderline(
+              child: InputDecorator(
+                decoration: dropdownDecoration(theme).copyWith(
+                  hintText: fetching ? '' : l10n.select_country_currency,
+                ),
+                isEmpty: selectedCurrency == null,
+                child: DropdownButton<Currency>(
+                  value: selectedCurrency,
+                  isDense: true,
+                  isExpanded: true,
+                  onChanged: !fetching
+                      ? (Currency? currency) => context
+                          .read<CreateWalletCubit>()
+                          .selectWalletCurrency(currency)
+                      : null,
+                  icon: fetching ? const CommonProgressIndicator() : null,
+                  items: currencies.map((Currency currency) {
+                    final name = currency.name ?? '';
+                    final image = currency.image ?? '';
+                    return DropdownMenuItem<Currency>(
+                      value: currency,
+                      child: Row(
+                        children: [
+                          Visibility(
+                            visible: image.isNotEmpty,
+                            child: AppPadding(
+                              padding: const AppEdgeInsets.only(
+                                right: AppGapSize.regular,
+                              ),
+                              child: AppText.heading4(image),
                             ),
-                          ],
-                        ),
-                      );
-                    }).toList(),
-                  ),
+                          ),
+                          AppText.paragraph2(
+                            name.trim(),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
                 ),
               ),
             );
@@ -399,12 +421,22 @@ class _WalletCurrencyDropdownState extends State<_WalletCurrencyDropdown> {
   }
 }
 
-InputDecoration dropdownDecoration(AppThemeData theme) => InputDecoration(
-      hintStyle: theme.typography.paragraph2.copyWith(),
-      border: OutlineInputBorder(
-        borderSide: BorderSide.none,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      fillColor: theme.colors.white,
-      filled: true,
-    );
+InputDecoration dropdownDecoration(AppThemeData theme) {
+  final border = OutlineInputBorder(
+    borderSide: BorderSide(
+      color: theme.colors.primary200.withOpacity(0.6),
+    ),
+    borderRadius: theme.radius.asBorderRadius().small,
+  );
+  return InputDecoration(
+    hintStyle: theme.typography.paragraph2.copyWith(),
+    contentPadding: EdgeInsets.symmetric(
+      vertical: theme.spacing.small,
+      horizontal: theme.spacing.regular,
+    ),
+    border: border,
+    enabledBorder: border,
+    fillColor: theme.colors.white,
+    filled: true,
+  );
+}

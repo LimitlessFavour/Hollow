@@ -204,7 +204,9 @@ class __$CreateWalletStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CreateWalletState implements _CreateWalletState {
+class _$_CreateWalletState
+    with DiagnosticableTreeMixin
+    implements _CreateWalletState {
   const _$_CreateWalletState(
       {this.wallet = Wallet.empty,
       this.createWalletStatus = CreateWalletStatus.initial,
@@ -234,8 +236,21 @@ class _$_CreateWalletState implements _CreateWalletState {
   final String? errorMessage;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CreateWalletState(wallet: $wallet, createWalletStatus: $createWalletStatus, fetchCurrenciesStatus: $fetchCurrenciesStatus, availableCurrencies: $availableCurrencies, walletType: $walletType, errorMessage: $errorMessage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CreateWalletState'))
+      ..add(DiagnosticsProperty('wallet', wallet))
+      ..add(DiagnosticsProperty('createWalletStatus', createWalletStatus))
+      ..add(DiagnosticsProperty('fetchCurrenciesStatus', fetchCurrenciesStatus))
+      ..add(DiagnosticsProperty('availableCurrencies', availableCurrencies))
+      ..add(DiagnosticsProperty('walletType', walletType))
+      ..add(DiagnosticsProperty('errorMessage', errorMessage));
   }
 
   @override

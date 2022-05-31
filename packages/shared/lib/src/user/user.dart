@@ -2,9 +2,18 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/src/typedefs.dart';
+import 'package:shared/src/wallet/wallet.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
+
+List<Map<String, dynamic>> walletsToJson(List<Wallet> wallets) {
+  return wallets.map((wallet) => wallet.toJson()).toList();
+}
+
+List<Wallet> walletsFromJson(List<Map<String, dynamic>> wallets) {
+  return wallets.map(Wallet.fromJson).toList();
+}
 
 @freezed
 class User with _$User {
@@ -17,6 +26,9 @@ class User with _$User {
     String? lastname,
     String? username,
     String? phoneNumber,
+    @JsonKey(toJson: walletsToJson, fromJson: walletsFromJson)
+    @Default(<Wallet>[])
+        List<Wallet> wallets,
   }) = _User;
 
   const User._();
