@@ -31,13 +31,13 @@ $ flutter run --flavor production --target lib/main_production.dart
 _\*Hollow works on iOS, Android._
 
 ### Setting up asset folders
-Make sure to add the Config folder under the root/assets folder. The config_example folder provides a guide
+Make sure to add the Config folder under the root/assets folder. The config_example folder provides a guide.
 Any value works for both 'baseUrl' and 'auth_token' for now.
 
 ---
 
 ## Using Device Preview
-Hollow relies on [device_preview][device_preview_link] to approximate how the app performs across a whide range of devices.
+Hollow relies on [device_preview][device_preview_link] to approximate how the app performs across a wide range of devices.
 On Hollow, running the development flavour in debug mode will enable [device_preview][device_preview_link]
 It's recommended to run on a large screen device or simulator to utilize device_preview extensively.
 
