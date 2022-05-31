@@ -1,0 +1,4 @@
+{
+  "auth_token": "<STAGING_TOKEN_HERE>",
+  "baseUrl": "<STAGING_ENDPOINT_BASEURL_HERE"
+}

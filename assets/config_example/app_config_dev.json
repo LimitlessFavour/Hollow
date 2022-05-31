@@ -1,0 +1,4 @@
+{
+    "auth_token": "<DEV_TOKEN_HERE>",
+    "baseUrl": "<DEV_ENDPOINT_BASEURL_HERE"
+}

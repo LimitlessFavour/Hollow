@@ -9,7 +9,7 @@ Hollow assessment app
 
 ## Getting Started 🚀
 
-This project contains 3 flavors:
+Hollow contains 3 flavors:
 
 - development
 - staging
@@ -28,33 +28,30 @@ $ flutter run --flavor staging --target lib/main_staging.dart
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*Hollow works on iOS, Android, Web, and Windows._
+_\*Hollow works on iOS, Android._
+
+### Setting up asset folders
+Make sure to add the Config folder under the root/assets folder. The config_example folder provides a guide.
+Any value works for both 'baseUrl' and 'auth_token' for now.
 
 ---
 
-## Running Tests 🧪
-
-To run all unit and widget tests use the following command:
-
-```sh
-$ flutter test --coverage --test-randomize-ordering-seed random
-```
-
-To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov).
-
-```sh
-# Generate Coverage Report
-$ genhtml coverage/lcov.info -o coverage/
-
-# Open Coverage Report
-$ open coverage/index.html
-```
+## Using Device Preview
+Hollow relies on [device_preview][device_preview_link] to approximate how the app performs across a wide range of devices.
+On Hollow, running the development flavour in debug mode will enable [device_preview][device_preview_link]
+It's recommended to run on a large screen device or simulator to utilize device_preview extensively.
 
 ---
 
 ## Working with Translations 🌐
 
-This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
+Hollow relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
+
+### Current Supported Languages
+Hollow supports three languages : English(en), French(fr) and Spanish(es). You can test out the language translations using the tool bar on [device_preview][device_preview_link] or changing your device's current locale if you are running without [device_preview][device_preview_link] enabled.
+
+### Dart Analyis issues
+Sometimes, vscode highlights translation strings and variables with error messages. This is a popular issue. To fix it, you restart the dart analysis server as shown [here][fix_localization_errors]. Alternatively, you can close and reopen the project.
 
 ### Adding Strings
 
@@ -151,8 +148,38 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 }
 ```
 
+---
+
+## Running Tests 🧪
+
+To run all unit and widget tests use the following command:
+
+```sh
+$ flutter test --coverage --test-randomize-ordering-seed random
+```
+
+To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov).
+
+```sh
+# Generate Coverage Report
+$ genhtml coverage/lcov.info -o coverage/
+
+# Open Coverage Report
+$ open coverage/index.html
+```
+
+---
+
+## 🚀 Technologies
+
+- [Flutter v2.8.1]
+- Dart v2.16.2
+
+
 [coverage_badge]: coverage_badge.svg
+[device_preview_link]: https://github.com/aloisdeniel/flutter_device_preview
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
+[fix_localization_errors]: https://stackoverflow.com/questions/69578784/how-can-i-fix-flutter-localizations-error-on-the-vscode-target-of-uri-doesnt
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis

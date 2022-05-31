@@ -1,0 +1,53 @@
+name: hollow_design_system
+description: Hollow Core UI (Design System)
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+  equatable: ^2.0.3
+  flutter:
+    sdk: flutter
+  flutter_svg: ^1.0.3
+  gap: ^2.0.0
+  sleek_circular_slider: ^2.0.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^2.4.0
+
+flutter:
+  assets:
+    - assets/
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: Karla
+      fonts:
+        - asset: packages/hollow_design_system/fonts/Karla-Regular.ttf
+          weight: 400
+        - asset: packages/hollow_design_system/fonts/Karla-Medium.ttf
+          weight: 500
+        - asset: packages/hollow_design_system/fonts/Karla-SemiBold.ttf
+          weight: 600
+        - asset: packages/hollow_design_system/fonts/Karla-Bold.ttf
+          weight: 700
+        - asset: packages/hollow_design_system/fonts/Karla-Italic.ttf
+          style: italic
+    - family: Rubik
+      fonts:
+        - asset: packages/hollow_design_system/fonts/Rubik-Regular.ttf
+          weight: 400
+        - asset: packages/hollow_design_system/fonts/Rubik-Medium.ttf
+          weight: 500
+        - asset: packages/hollow_design_system/fonts/Rubik-SemiBold.ttf
+          weight: 600
+        - asset: packages/hollow_design_system/fonts/Rubik-Bold.ttf
+          weight: 700
+        - asset: packages/hollow_design_system/fonts/Rubik-Italic.ttf
+          style: italic

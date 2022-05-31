@@ -1,4 +1,13 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Modify this file to customize your launch splash screen -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/white" />
+
+    <!-- You can insert your own image assets here -->
+    <item android:gravity="center" android:drawable="@drawable/ic_launch_image" />
+</layer-list>
+
+<!-- <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
@@ -17,4 +26,5 @@
         android:pathData="M518.59,514.4C519.92,514.4 521.26,514.4 522.64,514.71H524.39C533.47,514.67 542.37,512.1 550.07,507.3C557.77,502.49 563.97,495.64 567.97,487.51C568.75,485.89 569.18,484.13 569.23,482.33C569.28,480.54 568.94,478.76 568.24,477.1C567.54,475.45 566.5,473.96 565.17,472.74C563.85,471.52 562.28,470.59 560.57,470.02C557.65,469.1 554.48,469.25 551.66,470.45C548.83,471.65 546.53,473.82 545.17,476.57C543.3,480.41 540.38,483.66 536.76,485.94C533.13,488.23 528.93,489.46 524.64,489.5H523.72C518.71,489.35 513.89,487.56 510.02,484.39C507.7,482.49 504.8,481.44 501.8,481.42C498.62,481.44 495.57,482.65 493.23,484.8C491.92,486.02 490.88,487.5 490.19,489.15C489.49,490.8 489.17,492.57 489.23,494.36C489.29,496.17 489.73,497.94 490.53,499.56C491.32,501.18 492.45,502.61 493.85,503.77C500.9,509.6 509.49,513.29 518.59,514.4V514.4Z"
         android:fillColor="#000000"/>
   </group>
-</vector>
+</vector> -->
+
