@@ -28,6 +28,8 @@ class ApiEndpoints {
   static String wallet(WalletEndpoint endpoint, {int? id}) {
     const path = '/wallet';
     switch (endpoint) {
+      case WalletEndpoint.FETCH_AVAILABLE_CURRENCIES:
+        return '$path/fetch-currencies';
       case WalletEndpoint.CREATE_WALLET:
         return '$path/create';
       case WalletEndpoint.FUND_WALLET:
@@ -52,6 +54,9 @@ enum AuthEndpoint {
 
 /// collection of endpoints used for wallet feature.
 enum WalletEndpoint {
+    /// An endpoint to fetch available wallet currencies.
+  FETCH_AVAILABLE_CURRENCIES,
+
   /// An endpoint to create new wallet.
   CREATE_WALLET,
 

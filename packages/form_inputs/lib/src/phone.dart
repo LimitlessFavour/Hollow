@@ -17,20 +17,24 @@ class Phone extends FormzInput<String, PhoneValidationError> {
   /// {@macro phone}
   const Phone.dirty([String value = '']) : super.dirty(value);
 
-  static final _phoneRegExp =
-      RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
+  // static final _phoneRegExp = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
+
+  ///
+  static const acceptedLength = 10;
 
   @override
- PhoneValidationError? validator(String? value) {
-    return _phoneRegExp.hasMatch(value ?? '')
+  PhoneValidationError? validator(String? value) {
+    // return _phoneRegExp.hasMatch(value ?? '')
+    //     ? null
+    //     : PhoneValidationError.invalid;
+    return (value ?? '').length >= acceptedLength
         ? null
         : PhoneValidationError.invalid;
   }
 }
- 
+
 ///Phone Json Converter
 class PhoneConverter implements JsonConverter<Phone, Map<String, dynamic>> {
-
   ///[PhoneConverter] constructor
   const PhoneConverter();
 

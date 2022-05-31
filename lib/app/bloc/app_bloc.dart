@@ -40,21 +40,29 @@ class AppBloc extends HydratedBloc<AppEvent, AppState> with ChangeNotifier {
         user: event.user,
       ),
     );
-    notifyListeners();
+    if (event.notifyListeners ?? true) notifyListeners();
   }
 
   Future<void> _onLogoutRequested(
     _LogoutRequested event,
     Emitter<AppState> emit,
   ) async {
-    emit(state.copyWith(status: AuthStatus.inProgress));
-    //delay for visualization.
-    await Future<void>.delayed(const Duration(milliseconds: 2000));
-    await _authenticationRepository.logout(
-      authToken: state.authToken ?? ConfigReader.initialAuthToken,
-      updateTokenCallback: (String? newToken) =>
-          add(_AuthTokenUpdated(newToken)),
-    );
+    try {
+      emit(state.copyWith(status: AuthStatus.inProgress));
+      final result = await _authenticationRepository.logout(
+        authToken: state.authToken ?? ConfigReader.initialAuthToken,
+        updateTokenCallback: (String? newToken) =>
+            add(_AuthTokenUpdated(newToken)),
+      );
+      result.when(
+        (error) => throw LogOutFailure(),
+        (user) => add(AppEvent.userChanged(user)),
+      );
+    } on LogOutFailure {
+      emit(state.copyWith(status: AuthStatus.restricted));
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override

@@ -2,11 +2,12 @@
 //TODO Document members
 
 import 'package:api_client/api_client.dart';
+import 'package:authentication_repository/src/client/client.dart';
 import 'package:shared/shared.dart';
 
 /// Dart Class that manages authentication
 /// {@endtemplate}
-class AuthClient {
+class AuthClient extends BaseAuthenticationClient {
   /// {@macro auth_client}
   AuthClient(this.baseUrl, {ApiService? apiService})
       : _apiService = apiService ?? ApiService(baseUrl);
@@ -16,6 +17,7 @@ class AuthClient {
 
   final ApiService _apiService;
 
+  @override
   Future<Result<Exception, User>> sendSignupData({
     required JSON data,
     required void Function(String newToken) updateTokenCallback,
@@ -36,6 +38,7 @@ class AuthClient {
     );
   }
 
+  @override
   Future<Result<Exception, User>> sendLoginData({
     required JSON data,
     required void Function(String newToken) updateTokenCallback,
@@ -56,6 +59,7 @@ class AuthClient {
     );
   }
 
+  @override
   Future<Result<Exception, User>> sendLogoutData({
     required void Function(String? newToken) updateTokenCallback,
     required String authToken,

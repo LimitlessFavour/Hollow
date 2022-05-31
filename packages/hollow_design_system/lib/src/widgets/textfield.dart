@@ -58,10 +58,10 @@ class AppTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    final commonBorderRadius = theme.radius.asBorderRadius().big;
+    final commonBorderRadius = theme.radius.asBorderRadius().mini;
     final fieldBorder = OutlineInputBorder(
       borderSide: BorderSide(
-        color: borderColor ?? theme.colors.grey600,
+        color: borderColor ?? theme.colors.primary200.withOpacity(0.6),
         // width: 1.0,
       ),
       borderRadius: commonBorderRadius,
@@ -102,6 +102,9 @@ class AppTextField extends StatelessWidget {
               obscureText: obscureText,
               decoration: InputDecoration(
                 hintText: hintText,
+                errorText: errorText,
+                errorStyle: theme.typography.paragraph2
+                    .copyWith(color: theme.colors.error),
                 hintStyle: theme.typography.paragraph1
                     .copyWith(color: theme.colors.grey600),
                 enabledBorder: fieldBorder,

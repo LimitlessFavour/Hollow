@@ -14,6 +14,9 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       lastname: json['lastname'] as String?,
       username: json['username'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
+      wallets: json['wallets'] == null
+          ? const <Wallet>[]
+          : walletsFromJson(json['wallets'] as List?),
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -24,4 +27,5 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'lastname': instance.lastname,
       'username': instance.username,
       'phoneNumber': instance.phoneNumber,
+      'wallets': walletsToJson(instance.wallets),
     };

@@ -3,11 +3,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 /// Validation errors for the [Password] [FormzInput].
 enum PasswordValidationError {
-  /// all of the conditions insatisified
-  all,
-
   ///invalid error - character conditions not matched
-  invalidCharacters,
+  ///no special characters
+  noSpecialCharacters,
+
+  ///no numbers
+  noNumbers,
 
   /// password length range -- too small or big
   invalidLength,
@@ -16,7 +17,7 @@ enum PasswordValidationError {
 /// {@template password}
 /// Form input for an password input.
 /// {@endtemplate}
-class Password extends FormzInput<String, PasswordValidationError> {
+class Password extends FormzInput<String, List<PasswordValidationError>> {
   /// {@macro password}
   const Password.pure() : super.pure('');
 
@@ -27,26 +28,31 @@ class Password extends FormzInput<String, PasswordValidationError> {
       RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&~]).{0,}');
 
   /// length of acceptable characters
-  static const validLength = 8;
-  
+  static const acceptableLength = 8;
 
   @override
-  PasswordValidationError? validator(String? value) {
-    final invalidLength = (value ?? '').length < validLength;
-    return !invalidLength && _passwordRegExp.hasMatch(value ?? '')
-        ? null
-        : invalidLength && _passwordRegExp.hasMatch(value ?? '')
-            ? PasswordValidationError.invalidLength
-            : !invalidLength && !_passwordRegExp.hasMatch(value ?? '')
-                ? PasswordValidationError.invalidCharacters
-                : PasswordValidationError.all;
+  List<PasswordValidationError>? validator(String? value) {
+    final errors = <PasswordValidationError>[];
+    final password = value ?? '';
+    final invalidLength = password.length < acceptableLength;
+    final noNumber = !password.contains(RegExp('[0-9]'));
+    final noSpecialCharacters =
+        !password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+
+    if (!invalidLength && !noNumber && !noSpecialCharacters) return null;
+
+    if (invalidLength) errors.add(PasswordValidationError.invalidLength);
+    if (noNumber) errors.add(PasswordValidationError.noNumbers);
+    if (noSpecialCharacters) {
+      errors.add(PasswordValidationError.noSpecialCharacters);
+    }
+    return errors;
   }
 }
 
- 
 ///Password Json Converter
-class PasswordConverter implements JsonConverter<Password, Map<String, dynamic>> {
-
+class PasswordConverter
+    implements JsonConverter<Password, Map<String, dynamic>> {
   ///[PasswordConverter] constructor
   const PasswordConverter();
 

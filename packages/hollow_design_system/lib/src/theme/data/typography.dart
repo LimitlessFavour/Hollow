@@ -36,7 +36,7 @@ class AppTypographyData extends Equatable {
           fontFamily: 'Rubik',
           package: 'hollow_design_system',
           fontSize: 32,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w400,
           decoration: TextDecoration.none,
         ),
         heading3: TextStyle(
@@ -50,14 +50,14 @@ class AppTypographyData extends Equatable {
           fontFamily: 'Rubik',
           package: 'hollow_design_system',
           fontSize: 20,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w400,
           decoration: TextDecoration.none,
         ),
         heading5: TextStyle(
           fontFamily: 'Rubik',
           package: 'hollow_design_system',
           fontSize: 18,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w400,
           decoration: TextDecoration.none,
         ),
         paragraph1: TextStyle(

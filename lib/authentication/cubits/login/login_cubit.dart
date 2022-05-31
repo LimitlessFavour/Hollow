@@ -22,7 +22,10 @@ class LoginCubit extends Cubit<LoginState> {
     emit(
       state.copyWith(
         email: email,
-        status: Formz.validate([email, state.password]),
+        status: Formz.validate([
+          email,
+          // state.password,
+        ]),
       ),
     );
   }
@@ -32,7 +35,10 @@ class LoginCubit extends Cubit<LoginState> {
     emit(
       state.copyWith(
         password: password,
-        status: Formz.validate([state.email, password]),
+        status: Formz.validate([
+          state.email,
+          // password,
+        ]),
       ),
     );
   }
@@ -41,24 +47,27 @@ class LoginCubit extends Cubit<LoginState> {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      await _authenticationRepository.login(
+      final result = await _authenticationRepository.login(
         email: state.email.value,
         password: state.password.value,
         updateTokenCallback: (token) => _appBloc.add(
           AppEvent.authTokenUpdated(token),
         ),
       );
-      emit(state.copyWith(status: FormzStatus.submissionSuccess));
-    }
-    //  on LogInWithEmailAndPasswordFailure catch (e) {
-    //   emit(
-    //     state.copyWith(
-    //       errorMessage: e.message,
-    //       status: FormzStatus.submissionFailure,
-    //     ),
-    //   );
-    // }
-    catch (_) {
+      result.when((error) {
+        throw LogInWithEmailAndPasswordFailure(error.toString());
+      }, (user) {
+        _appBloc.add(AppEvent.userChanged(user));
+        emit(state.copyWith(status: FormzStatus.submissionSuccess));
+      });
+    } on LogInWithEmailAndPasswordFailure catch (e) {
+      emit(
+        state.copyWith(
+          errorMessage: e.message,
+          status: FormzStatus.submissionFailure,
+        ),
+      );
+    } catch (_) {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
   }
