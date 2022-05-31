@@ -32,7 +32,6 @@ class HollowRouter {
         path: Routes.login.path,
         pageBuilder: (context, state) => LoginPage.page(state.pageKey),
       ),
-
       GoRoute(
         name: Routes.home,
         path: Routes.home.path,
@@ -44,10 +43,13 @@ class HollowRouter {
         pageBuilder: (context, state) => CreateWalletPage.page(state.pageKey),
       ),
     ],
-    
     errorPageBuilder: (context, state) => ErrorPage.page(state.pageKey),
     redirect: (state) {
+      print('should redirect');
+      print('should redirect');
       final loggedIn = appBloc.state.user.isNotEmpty;
+      print('loggedIn: $loggedIn');
+
 
       // accessible screens before authentication
       final onInitialRoute = state.subloc == Routes.root.path;

@@ -1,4 +1,5 @@
 import 'package:authentication_repository/src/client/authentication_client.dart';
+import 'package:authentication_repository/src/client/authentication_client_contract.dart';
 import 'package:shared/shared.dart';
 
 /// {@template authentication_repository}
@@ -8,16 +9,13 @@ import 'package:shared/shared.dart';
 
 class AuthenticationRepository {
   /// {@macro authentication_repository}
-  AuthenticationRepository({required this.baseUrl, AuthClient? authClient})
-      : _authClient = authClient ?? AuthClient(baseUrl);
+  AuthenticationRepository({required BaseAuthenticationClient authClient})
+      : _authClient = authClient;
 
-  /// Base url for api endpoints
-  final String baseUrl;
-
-  final AuthClient _authClient;
+  final BaseAuthenticationClient _authClient;
 
   Future<Result<Exception, User>> signup({
-    required String name,
+    required String firstname,
     required String lastname,
     required String username,
     required String phonenumber,
@@ -26,7 +24,7 @@ class AuthenticationRepository {
     required void Function(String newToken) updateTokenCallback,
   }) async {
     final body = <String, dynamic>{
-      'name': name,
+      'firstname': firstname,
       'lastname': lastname,
       'username': username,
       'phonenumber': phonenumber,

@@ -24,8 +24,8 @@ class TermsCondition extends FormzInput<bool, TermsConditionError> {
 }
 
 ///TermsCondition Json Converter
-class TermsConditionConverter implements JsonConverter<TermsCondition, Map<String, dynamic>> {
-
+class TermsConditionConverter
+    implements JsonConverter<TermsCondition, Map<String, dynamic>> {
   ///[TermsConditionConverter] constructor
   const TermsConditionConverter();
 

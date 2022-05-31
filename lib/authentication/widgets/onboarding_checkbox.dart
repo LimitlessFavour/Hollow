@@ -16,8 +16,10 @@ class OnboardingCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
+    final color = value ? theme.colors.success : theme.colors.error;
     return AppContainer(
       width: double.maxFinite,
+      padding: const AppEdgeInsets.only(bottom: AppGapSize.semiSmall),
       child: Row(
         children: [
           Transform.scale(
@@ -29,19 +31,20 @@ class OnboardingCheckbox extends StatelessWidget {
               uncheckedColor: theme.colors.white,
               borderRadius: theme.radius.asBorderRadius().large,
               border: Border.all(
-                color: theme.colors.success,
+                color: color,
               ),
               checkedWidget: Icon(
                 Icons.check,
-                color: theme.colors.success,
+                color: color,
                 size: theme.spacing.regular,
               ),
             ),
           ),
           const AppGap.semiSmall(),
-          AppText.paragraph3(
+          AppText.paragraph2(
             title,
-            color: theme.colors.success,
+            color: color,
+            fontWeight: value ? FontWeight.w500 : FontWeight.w400,
           )
         ],
       ),

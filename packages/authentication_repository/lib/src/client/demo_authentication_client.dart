@@ -7,9 +7,9 @@ import 'package:shared/shared.dart';
 
 /// Dart Class that manages authentication -- DEMO
 /// {@endtemplate}
-class DemoWalletClient extends BaseAuthenticationClient {
+class DemoAuthClient extends BaseAuthenticationClient {
   /// {@macro auth_client}
-  DemoWalletClient(this.baseUrl, {ApiService? apiService})
+  DemoAuthClient(this.baseUrl, {ApiService? apiService})
       : _apiService = apiService ?? ApiService(baseUrl);
 
   /// Base url for api endpoints
@@ -23,9 +23,15 @@ class DemoWalletClient extends BaseAuthenticationClient {
     required void Function(String newToken) updateTokenCallback,
   }) async {
     await Future<void>.delayed(const Duration(seconds: 2));
-    final user = User.fromJson(data);
+    print('datassdfff');
+    const randomUserIdGenerated = 'user_id_uehrrn';
     const randomAuthTokenGenerated = 'randm_82637djjfgh';
+    data.addAll(<String, dynamic>{
+      'userId': randomUserIdGenerated,
+    });
+    print(data);
     updateTokenCallback(randomAuthTokenGenerated);
+    final user = User.fromJson(data);
     return Success(user);
   }
 
@@ -36,12 +42,11 @@ class DemoWalletClient extends BaseAuthenticationClient {
   }) async {
     await Future<void>.delayed(const Duration(seconds: 2));
     final user = User(
-      userId: 'random_userid123',
-      firstname: 'Roberts',
-      middleName: 'Joe',
-      email: data['email'] as String,
-      phoneNumber: '+2348023451234'
-    );
+        userId: 'random_userid123',
+        firstname: 'Roberts',
+        middleName: 'Joe',
+        email: data['email'] as String,
+        phoneNumber: '+2348023451234');
     const randomAuthTokenGenerated = 'randm_826dfrr37dpoirlwe';
     updateTokenCallback(randomAuthTokenGenerated);
     return Success(user);

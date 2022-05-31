@@ -2,10 +2,12 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:hollow/app/app.dart';
 import 'package:hollow/authentication/cubits/signup/sign_up_cubit.dart';
 import 'package:hollow/authentication/widgets/app_checkbox.dart';
+import 'package:hollow/authentication/widgets/onboarding_checkbox.dart';
 import 'package:hollow/l10n/l10n.dart';
 import 'package:hollow_design_system/hollow_design_system.dart';
 
@@ -38,36 +40,44 @@ class _SignupView extends StatelessWidget {
     return BlocConsumer<SignupCubit, SignupState>(
       listenWhen: (previous, current) => previous.status != current.status,
       buildWhen: (previous, current) => previous.status != current.status,
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state.status.isSubmissionSuccess) {
+          print('submission success now');
+        }
+        if (state.status.isSubmissionFailure) {
+          print('submission failure');
+        }
+      },
       builder: (context, state) {
         return AppScaffold(
           inProgress: state.status == FormzStatus.submissionInProgress,
-          body: AppScrollableColumn(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const AppGap.large(),
-              const _CreateNewAccountText(),
-              const AppGap.regular(),
-              AppText.paragraph1(
-                l10n.we_glad_you_here,
-                color: context.theme.colors.grey700,
-              ),
-              const AppGap.big(),
-              const _FirstNameMiddleName(),
-              const _LastName(),
-              const _PreferredName(),
-              const _PhoneNumber(),
-              const _EmailAddress(),
-              const _Password(),
-              const AppGap.big(),
-              const _TermsConditions(),
-              const AppGap.large(),
-              const _SignupButton(),
-              const AppGap.big(),
-              const _GotAccount(),
-              const AppGap.big(),
-
-            ],
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const AppGap.large(),
+                const _CreateNewAccountText(),
+                const AppGap.regular(),
+                AppText.paragraph1(
+                  l10n.we_glad_you_here,
+                  color: context.theme.colors.grey700,
+                ),
+                const AppGap.big(),
+                const _FirstNameMiddleName(),
+                const _LastName(),
+                const _PreferredName(),
+                const _PhoneNumber(),
+                const _EmailAddress(),
+                const _Password(),
+                const AppGap.big(),
+                const _TermsConditions(),
+                const AppGap.large(),
+                const _SignupButton(),
+                const AppGap.big(),
+                const _GotAccount(),
+                const AppGap.big(),
+              ],
+            ),
           ),
         );
       },
@@ -146,7 +156,8 @@ class _PreferredName extends StatelessWidget {
           padding: const AppEdgeInsets.only(bottom: AppGapSize.semiBig),
           hintText: l10n.preferred_name_username,
           errorText: state.username.invalid ? 'l10n.enter username' : null,
-          onChanged: (name) => context.read<SignupCubit>().nameChanged(name),
+          onChanged: (name) =>
+              context.read<SignupCubit>().usernameChanged(name),
         );
       },
     );
@@ -165,6 +176,7 @@ class _PhoneNumber extends StatelessWidget {
         return AppTextField(
           padding: const AppEdgeInsets.only(bottom: AppGapSize.semiBig),
           hintText: l10n.phone_number,
+          keyboardType: TextInputType.phone,
           errorText:
               state.phone.invalid ? 'l10n.enter a valid phonenumber' : null,
           onChanged: (phone) => context.read<SignupCubit>().phoneChanged(phone),
@@ -201,30 +213,124 @@ class _Password extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    final theme = context.theme;
     return BlocBuilder<SignupCubit, SignupState>(
       buildWhen: (previous, current) =>
           previous.password != current.password ||
           previous.confirmedPassword != current.confirmedPassword,
       builder: (context, state) {
-        print('confirmed password rebuilt');
-        print('confirmed password ${state.confirmedPassword.value}');
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // AppTextField(
-            //   hintText: l10n.password,
-            //   onChanged: (password) =>
-            //       context.read<SignupCubit>().passwordChanged(password),
-            // ),
-            // const AppGap.semiBig(),
-            // AppTextField(
-            //   hintText: 'l10n.confirm_passsword',
-            //   onChanged: (password) => context
-            //       .read<SignupCubit>()
-            //       .confirmedPasswordChanged(password),
-            // ),
-            // const AppGap.regular(),
+            AppTextField(
+              hintText: l10n.password,
+              onChanged: (password) =>
+                  context.read<SignupCubit>().passwordChanged(password),
+            ),
+            const AppGap.semiBig(),
+            AppTextField(
+              hintText: 'l10n.confirm_passsword',
+              onChanged: (password) => context
+                  .read<SignupCubit>()
+                  .confirmedPasswordChanged(password),
+            ),
+            const AppGap.regular(),
+            BlocBuilder<SignupCubit, SignupState>(
+              builder: (context, state) {
+                final pure = state.password.pure;
+                return AnimatedSwitcher(
+                  duration: theme.durations.regular,
+                  child: pure
+                      ? const SizedBox.shrink()
+                      : Column(
+                          children: const [
+                            _CharactersLengthCheckBox(),
+                            _SpecialCharacterCheckBox(),
+                            _NumberCheckBox(),
+                            _PasswordMatchCheckbox(),
+                          ],
+                        ),
+                );
+              },
+            ),
           ],
+        );
+      },
+    );
+  }
+}
+
+class _CharactersLengthCheckBox extends StatelessWidget {
+  const _CharactersLengthCheckBox({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return BlocBuilder<SignupCubit, SignupState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return OnboardingCheckbox(
+          title: l10n.must_be_8_chars,
+          value: !(state.password.error ?? [])
+              .contains(PasswordValidationError.invalidLength),
+        );
+      },
+    );
+  }
+}
+
+class _SpecialCharacterCheckBox extends StatelessWidget {
+  const _SpecialCharacterCheckBox({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return BlocBuilder<SignupCubit, SignupState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return OnboardingCheckbox(
+          title: l10n.must_contain_special_char,
+          value: !(state.password.error ?? [])
+              .contains(PasswordValidationError.noSpecialCharacters),
+        );
+      },
+    );
+  }
+}
+
+class _NumberCheckBox extends StatelessWidget {
+  const _NumberCheckBox({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return BlocBuilder<SignupCubit, SignupState>(
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) {
+        return OnboardingCheckbox(
+          title: l10n.must_contain_number,
+          value: !(state.password.error ?? [])
+              .contains(PasswordValidationError.noNumbers),
+        );
+      },
+    );
+  }
+}
+
+class _PasswordMatchCheckbox extends StatelessWidget {
+  const _PasswordMatchCheckbox({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return BlocBuilder<SignupCubit, SignupState>(
+      buildWhen: (previous, current) =>
+          previous.password != current.password ||
+          previous.confirmedPassword != current.confirmedPassword,
+      builder: (context, state) {
+        return OnboardingCheckbox(
+          title: 'l10n.passwords match',
+          value: !state.confirmedPassword.invalid && !state.password.pure,
         );
       },
     );
@@ -237,7 +343,7 @@ class _SignupButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignupCubit, SignupState>(
-      // buildWhen: (previous, current) => previous.status != current.status,
+      buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         final l10n = context.l10n;
         return AppButton(
@@ -298,12 +404,9 @@ class _TermsConditions extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BlocBuilder<SignupCubit, SignupState>(
-          // buildWhen: (previous, current) =>
-          //     previous.termsCondition != current.termsCondition,
+          buildWhen: (previous, current) =>
+              previous.termsCondition != current.termsCondition,
           builder: (context, state) {
-            print('widget rebuilt');
-            print('terms value ${state.termsCondition.value}');
-
             return Padding(
               padding: const EdgeInsets.only(top: 3),
               child: AppCheckbox(
@@ -320,8 +423,9 @@ class _TermsConditions extends StatelessWidget {
                   color: theme.colors.success,
                   size: theme.spacing.regular,
                 ),
-                onChanged: (bool? value) =>
-                    context.read<SignupCubit>().agreeToTermsChanged(value),
+                onChanged: (bool? value) => context
+                    .read<SignupCubit>()
+                    .agreeToTermsChanged(!(value ?? false)),
               ),
             );
           },

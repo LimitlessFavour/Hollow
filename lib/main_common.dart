@@ -16,14 +16,16 @@ Future<void> mainCommon(Environment env) async {
   Env.initialize(env);
   await ConfigReader.initialize(Env.configPath);
 
-
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
   final authenticationRepository = AuthenticationRepository(
-    baseUrl: ConfigReader.baseUrl,
+    //*creating the AuthRepository with a DemoClient for simulation/illustration
+    //* an actual implementation is also provided
+    //* both demo and actual implementation extend a BaseAuthclient contract.
+    authClient: DemoAuthClient(ConfigReader.baseUrl),
   );
 
   await ConfigReader.initialize(Env.configPath);

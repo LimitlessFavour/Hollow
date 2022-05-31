@@ -16,7 +16,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       phoneNumber: json['phoneNumber'] as String?,
       wallets: json['wallets'] == null
           ? const <Wallet>[]
-          : walletsFromJson(json['wallets'] as List),
+          : walletsFromJson(json['wallets'] as List?),
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{

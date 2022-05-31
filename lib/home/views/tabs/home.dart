@@ -14,17 +14,19 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppContainer(
-      child: AppScrollableColumn(
-        children: [
-          AppGap.semiBig(),
-          _LeadingRow(),
-          _Wallet(),
-          AppGap.big(),
-          _HomeActions(),
-          _RecentTransactions(),
-          AppGap.large(scale: 2.5),
-        ],
+    return AppContainer(
+      child: SingleChildScrollView(
+        child: Column(
+          children: const [
+            AppGap.semiBig(),
+            _LeadingRow(),
+            _Wallet(),
+            AppGap.big(),
+            _HomeActions(),
+            _RecentTransactions(),
+            AppGap.large(scale: 2.5),
+          ],
+        ),
       ),
     );
   }
@@ -62,6 +64,7 @@ class _WelcomeText extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final theme = context.theme;
+    print('our user : ${context.read<AppBloc>().state.user}');
     final name = context.read<AppBloc>().state.user.firstname ?? '';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

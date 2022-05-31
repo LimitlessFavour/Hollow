@@ -146,11 +146,8 @@ class SignupCubit extends Cubit<SignupState> {
   }
 
   // ignore: avoid_positional_boolean_parameters
-  void agreeToTermsChanged(bool? value) {
-    print('agreeToTermsChanged called');
-    final termsConditions = TermsCondition.dirty(
-      value ?? false,
-    );
+  void agreeToTermsChanged(bool value) {
+    final termsConditions = TermsCondition.dirty(value);
     emit(state.copyWith(
       termsCondition: termsConditions,
       status: Formz.validate([
@@ -164,33 +161,35 @@ class SignupCubit extends Cubit<SignupState> {
         termsConditions,
       ]),
     ));
-    print('agreeToTermsChanged called 2');
-
   }
 
   Future<void> signUpWithCredentials() async {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      // await _authenticationRepository.signup(
-      //   name: state.name.value,
-      //   lastname: state.lastname.value,
-      //   username: state.username.value,
-      //   phonenumber: state.phone.value,
-      //   email: state.email.value,
-      //   password: state.password.value,
-      // updateTokenCallback: (String newToken) =>
-      //     _appBloc.add(AuthTokenUpdated(newToken)),
-      // );
-      emit(state.copyWith(status: FormzStatus.submissionSuccess));
-    }
-    // on SignUpWithEmailAndPasswordFailure catch (e) {
-    //   emit(state.copyWith(
-    //     errorMessage: e.message,
-    //     status: FormzStatus.submissionFailure,
-    //   ));
-    // }
-    catch (_) {
+      final result = await _authenticationRepository.signup(
+        firstname: state.name.value,
+        lastname: state.lastname.value,
+        username: state.username.value,
+        phonenumber: state.phone.value,
+        email: state.email.value,
+        password: state.password.value,
+        updateTokenCallback: (String token) => _appBloc.add(
+          AppEvent.authTokenUpdated(token),
+        ),
+      );
+      result.when((error) {
+        throw SignUpWithEmailAndPasswordFailure(error.toString());
+      }, (user) {
+        _appBloc.add(AppEvent.userChanged(user));
+        emit(state.copyWith(status: FormzStatus.submissionSuccess));
+      });
+    } on SignUpWithEmailAndPasswordFailure catch (e) {
+      emit(state.copyWith(
+        errorMessage: e.message,
+        status: FormzStatus.submissionFailure,
+      ));
+    } catch (e) {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
   }
