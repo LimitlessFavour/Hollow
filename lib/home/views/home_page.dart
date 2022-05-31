@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hollow/app/bloc/app_bloc.dart';
 import 'package:hollow/home/cubit/home_cubit.dart';
 import 'package:hollow/home/views/tabs/tabs.dart';
-import 'package:hollow/l10n/l10n.dart';
 import 'package:hollow_design_system/hollow_design_system.dart';
 
 part '../widgets/tab_button.dart';
@@ -33,7 +32,10 @@ class HomeView extends StatelessWidget {
     final icons = context.theme.icons.characters;
     final selectedTab =
         context.select((HomeCubit cubit) => cubit.state.homeTab);
+    final inProgress = context.select((AppBloc bloc) => bloc.state.status) ==
+        AuthStatus.inProgress;
     return AppLightScaffold(
+      inProgress: inProgress,
       body: IndexedStack(
         index: selectedTab.index,
         children: const [Home(), Wallets(), Transactions(), Profile()],

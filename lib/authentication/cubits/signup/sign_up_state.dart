@@ -12,6 +12,7 @@ class SignupState with _$SignupState {
     @NameConverter() @Default(Name.pure()) Name lastname,
     @NameConverter() @Default(Name.pure()) Name username,
     @PhoneConverter() @Default(Phone.pure()) Phone phone,
+    @TermsConditionConverter() @Default(TermsCondition.pure()) TermsCondition termsCondition,
     @Default(FormzStatus.pure) FormzStatus status,
     String? errorMessage,
   }) = _SignupState;

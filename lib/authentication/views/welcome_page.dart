@@ -33,10 +33,7 @@ class _WelcomePageState extends State<WelcomePage> {
               width: theme.spacing.large * 4,
             ),
             const AppGap.large(),
-            AppText.paragraph1(
-              'l10n.Welcome to hollow',
-            ),
-            AppText.paragraph1(
+            AppText.heading4(
               'l10n.Welcome to hollow',
             ),
             const AppGap.large(),
@@ -47,6 +44,9 @@ class _WelcomePageState extends State<WelcomePage> {
             const AppGap.semiBig(),
             AppButton(
               title: 'l10n.sign_up',
+              color: theme.colors.white,
+              textColor: theme.colors.primary600,
+              borderColor: theme.colors.primary200.withOpacity(0.6),
               onTap: () => context.pushNamed(Routes.signUp),
             ),
           ],

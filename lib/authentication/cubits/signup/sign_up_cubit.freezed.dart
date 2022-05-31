@@ -36,6 +36,8 @@ class _$SignupStateTearOff {
           Name username = const Name.pure(),
       @PhoneConverter()
           Phone phone = const Phone.pure(),
+      @TermsConditionConverter()
+          TermsCondition termsCondition = const TermsCondition.pure(),
       FormzStatus status = FormzStatus.pure,
       String? errorMessage}) {
     return _SignupState(
@@ -46,6 +48,7 @@ class _$SignupStateTearOff {
       lastname: lastname,
       username: username,
       phone: phone,
+      termsCondition: termsCondition,
       status: status,
       errorMessage: errorMessage,
     );
@@ -75,6 +78,8 @@ mixin _$SignupState {
   Name get username => throw _privateConstructorUsedError;
   @PhoneConverter()
   Phone get phone => throw _privateConstructorUsedError;
+  @TermsConditionConverter()
+  TermsCondition get termsCondition => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
@@ -97,6 +102,7 @@ abstract class $SignupStateCopyWith<$Res> {
       @NameConverter() Name lastname,
       @NameConverter() Name username,
       @PhoneConverter() Phone phone,
+      @TermsConditionConverter() TermsCondition termsCondition,
       FormzStatus status,
       String? errorMessage});
 }
@@ -118,6 +124,7 @@ class _$SignupStateCopyWithImpl<$Res> implements $SignupStateCopyWith<$Res> {
     Object? lastname = freezed,
     Object? username = freezed,
     Object? phone = freezed,
+    Object? termsCondition = freezed,
     Object? status = freezed,
     Object? errorMessage = freezed,
   }) {
@@ -150,6 +157,10 @@ class _$SignupStateCopyWithImpl<$Res> implements $SignupStateCopyWith<$Res> {
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as Phone,
+      termsCondition: termsCondition == freezed
+          ? _value.termsCondition
+          : termsCondition // ignore: cast_nullable_to_non_nullable
+              as TermsCondition,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -177,6 +188,7 @@ abstract class _$SignupStateCopyWith<$Res>
       @NameConverter() Name lastname,
       @NameConverter() Name username,
       @PhoneConverter() Phone phone,
+      @TermsConditionConverter() TermsCondition termsCondition,
       FormzStatus status,
       String? errorMessage});
 }
@@ -200,6 +212,7 @@ class __$SignupStateCopyWithImpl<$Res> extends _$SignupStateCopyWithImpl<$Res>
     Object? lastname = freezed,
     Object? username = freezed,
     Object? phone = freezed,
+    Object? termsCondition = freezed,
     Object? status = freezed,
     Object? errorMessage = freezed,
   }) {
@@ -232,6 +245,10 @@ class __$SignupStateCopyWithImpl<$Res> extends _$SignupStateCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as Phone,
+      termsCondition: termsCondition == freezed
+          ? _value.termsCondition
+          : termsCondition // ignore: cast_nullable_to_non_nullable
+              as TermsCondition,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -262,6 +279,8 @@ class _$_SignupState implements _SignupState {
           this.username = const Name.pure(),
       @PhoneConverter()
           this.phone = const Phone.pure(),
+      @TermsConditionConverter()
+          this.termsCondition = const TermsCondition.pure(),
       this.status = FormzStatus.pure,
       this.errorMessage});
 
@@ -298,13 +317,17 @@ class _$_SignupState implements _SignupState {
   final Phone phone;
   @JsonKey()
   @override
+  @TermsConditionConverter()
+  final TermsCondition termsCondition;
+  @JsonKey()
+  @override
   final FormzStatus status;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'SignupState(email: $email, password: $password, confirmedPassword: $confirmedPassword, name: $name, lastname: $lastname, username: $username, phone: $phone, status: $status, errorMessage: $errorMessage)';
+    return 'SignupState(email: $email, password: $password, confirmedPassword: $confirmedPassword, name: $name, lastname: $lastname, username: $username, phone: $phone, termsCondition: $termsCondition, status: $status, errorMessage: $errorMessage)';
   }
 
   @override
@@ -320,6 +343,8 @@ class _$_SignupState implements _SignupState {
             const DeepCollectionEquality().equals(other.lastname, lastname) &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
+            const DeepCollectionEquality()
+                .equals(other.termsCondition, termsCondition) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
                 .equals(other.errorMessage, errorMessage));
@@ -335,6 +360,7 @@ class _$_SignupState implements _SignupState {
       const DeepCollectionEquality().hash(lastname),
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(phone),
+      const DeepCollectionEquality().hash(termsCondition),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(errorMessage));
 
@@ -358,6 +384,7 @@ abstract class _SignupState implements SignupState {
       @NameConverter() Name lastname,
       @NameConverter() Name username,
       @PhoneConverter() Phone phone,
+      @TermsConditionConverter() TermsCondition termsCondition,
       FormzStatus status,
       String? errorMessage}) = _$_SignupState;
 
@@ -385,6 +412,9 @@ abstract class _SignupState implements SignupState {
   @override
   @PhoneConverter()
   Phone get phone;
+  @override
+  @TermsConditionConverter()
+  TermsCondition get termsCondition;
   @override
   FormzStatus get status;
   @override

@@ -36,6 +36,10 @@ _$_SignupState _$$_SignupStateFromJson(Map<String, dynamic> json) =>
           ? const Phone.pure()
           : const PhoneConverter()
               .fromJson(json['phone'] as Map<String, dynamic>),
+      termsCondition: json['termsCondition'] == null
+          ? const TermsCondition.pure()
+          : const TermsConditionConverter()
+              .fromJson(json['termsCondition'] as Map<String, dynamic>),
       status: $enumDecodeNullable(_$FormzStatusEnumMap, json['status']) ??
           FormzStatus.pure,
       errorMessage: json['errorMessage'] as String?,
@@ -51,6 +55,8 @@ Map<String, dynamic> _$$_SignupStateToJson(_$_SignupState instance) =>
       'lastname': const NameConverter().toJson(instance.lastname),
       'username': const NameConverter().toJson(instance.username),
       'phone': const PhoneConverter().toJson(instance.phone),
+      'termsCondition':
+          const TermsConditionConverter().toJson(instance.termsCondition),
       'status': _$FormzStatusEnumMap[instance.status],
       'errorMessage': instance.errorMessage,
     };

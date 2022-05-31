@@ -23,34 +23,8 @@ class _ErrorPageState extends State<ErrorPage> {
     return AppScaffold(
       backgroundColor: theme.colors.white,
       addSafeArea: true,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture(
-              theme.images.appLogo,
-              height: theme.spacing.large * 4,
-              width: theme.spacing.large * 4,
-            ),
-            const AppGap.large(),
-            AppText.paragraph1(
-              'l10n.Welcome to hollow',
-            ),
-            AppText.paragraph1(
-              'l10n.Welcome to hollow',
-            ),
-            const AppGap.large(),
-            AppButton(
-              title: l10n.sign_in,
-              onTap: () => context.pushNamed(Routes.login),
-            ),
-            const AppGap.semiBig(),
-            AppButton(
-              title: 'l10n.sign_up',
-              onTap: () => context.pushNamed(Routes.signUp),
-            ),
-          ],
-        ),
+      body: const Center(
+        child: AppText.paragraph1('l10n.Error Page'),
       ),
     );
   }

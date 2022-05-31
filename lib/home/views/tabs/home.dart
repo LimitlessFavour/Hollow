@@ -3,8 +3,9 @@ import 'package:hollow/app/app.dart';
 import 'package:hollow/home/models/models.dart';
 import 'package:hollow/l10n/l10n.dart';
 import 'package:hollow_design_system/hollow_design_system.dart';
+import 'package:shared/shared.dart';
 
-part '../../widgets/create_wallet_card.dart';
+part '../../widgets/wallet_cards.dart';
 part '../../widgets/home_action_button.dart';
 part '../../widgets/recent_transactions.dart';
 
@@ -16,14 +17,135 @@ class Home extends StatelessWidget {
     return const AppContainer(
       child: AppScrollableColumn(
         children: [
-          AppGap.large(scale: 1.2),
-          _CreateWalletCard(),
+          AppGap.semiBig(),
+          _LeadingRow(),
+          _Wallet(),
           AppGap.big(),
           _HomeActions(),
           _RecentTransactions(),
+          AppGap.large(scale: 2.5),
         ],
       ),
     );
+  }
+}
+
+class _LeadingRow extends StatelessWidget {
+  const _LeadingRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme;
+    return AppPadding(
+      padding: const AppEdgeInsets.symmetric(
+        vertical: AppGapSize.big,
+        horizontal: AppGapSize.semiBig,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const _WelcomeText(),
+          AppIcon.regular(
+            theme.icons.characters.notificationBell,
+            color: theme.colors.grey700,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _WelcomeText extends StatelessWidget {
+  const _WelcomeText({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = context.theme;
+    final name = context.read<AppBloc>().state.user.firstname ?? '';
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppText.paragraph1(
+          '${l10n.hi}, $name',
+          color: theme.colors.grey600,
+        ),
+        AppText.heading3(
+          l10n.welcome_back,
+          fontWeight: FontWeight.w700,
+          fontFamily: AppFontFamily.karla,
+        ),
+      ],
+    );
+  }
+}
+
+class _Wallet extends StatefulWidget {
+  const _Wallet({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_Wallet> createState() => _WalletState();
+}
+
+class _WalletState extends State<_Wallet> {
+  late final PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final appBloc = context.read<AppBloc>();
+    final wallets = appBloc.state.user.wallets;
+    if (wallets.isEmpty) {
+      return const _CreateWalletCard();
+    }
+    return SizedBox(
+      height: context.height / 3.8,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              height: context.height / 4,
+              child: PageView.builder(
+                controller: pageController,
+                itemBuilder: (context, index) {
+                  return _WalletCard(wallets[index]);
+                },
+                itemCount: wallets.length,
+              ),
+            ),
+            _WalletCountIndicator(pageController),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _WalletCountIndicator extends StatelessWidget {
+  const _WalletCountIndicator(
+    this.controller, {
+    Key? key,
+  }) : super(key: key);
+
+  final PageController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
 

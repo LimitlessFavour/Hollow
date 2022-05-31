@@ -1,7 +1,6 @@
 // ignore_for_file: require_trailing_commas
 
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:bloc/bloc.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -31,6 +30,7 @@ class SignupCubit extends Cubit<SignupState> {
         state.email,
         state.password,
         state.confirmedPassword,
+        state.termsCondition,
       ]),
     ));
   }
@@ -47,6 +47,7 @@ class SignupCubit extends Cubit<SignupState> {
         state.email,
         state.password,
         state.confirmedPassword,
+        state.termsCondition,
       ]),
     ));
   }
@@ -63,6 +64,7 @@ class SignupCubit extends Cubit<SignupState> {
         email,
         state.password,
         state.confirmedPassword,
+        state.termsCondition,
       ]),
     ));
   }
@@ -79,6 +81,7 @@ class SignupCubit extends Cubit<SignupState> {
         state.email,
         state.password,
         state.confirmedPassword,
+        state.termsCondition,
       ]),
     ));
   }
@@ -95,6 +98,7 @@ class SignupCubit extends Cubit<SignupState> {
         state.email,
         state.password,
         state.confirmedPassword,
+        state.termsCondition,
       ]),
     ));
   }
@@ -116,6 +120,7 @@ class SignupCubit extends Cubit<SignupState> {
         state.email,
         password,
         confirmedPassword,
+        state.termsCondition,
       ]),
     ));
   }
@@ -135,8 +140,32 @@ class SignupCubit extends Cubit<SignupState> {
         state.email,
         state.password,
         confirmedPassword,
+        state.termsCondition,
       ]),
     ));
+  }
+
+  // ignore: avoid_positional_boolean_parameters
+  void agreeToTermsChanged(bool? value) {
+    print('agreeToTermsChanged called');
+    final termsConditions = TermsCondition.dirty(
+      value ?? false,
+    );
+    emit(state.copyWith(
+      termsCondition: termsConditions,
+      status: Formz.validate([
+        state.name,
+        state.lastname,
+        state.username,
+        state.phone,
+        state.email,
+        state.password,
+        state.confirmedPassword,
+        termsConditions,
+      ]),
+    ));
+    print('agreeToTermsChanged called 2');
+
   }
 
   Future<void> signUpWithCredentials() async {
@@ -150,8 +179,8 @@ class SignupCubit extends Cubit<SignupState> {
       //   phonenumber: state.phone.value,
       //   email: state.email.value,
       //   password: state.password.value,
-        // updateTokenCallback: (String newToken) =>
-        //     _appBloc.add(AuthTokenUpdated(newToken)),
+      // updateTokenCallback: (String newToken) =>
+      //     _appBloc.add(AuthTokenUpdated(newToken)),
       // );
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     }

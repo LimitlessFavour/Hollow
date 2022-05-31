@@ -31,9 +31,7 @@ Future<void> mainCommon(Environment env) async {
   await bootstrap(
     () async {
       return App(
-        // appConfigRepository: appConfigRepository,
         authenticationRepository: authenticationRepository,
-        // locationRepository: locationRepository,
         devicePreviewEnabled: Env.enableDevicePreview,
       );
     },

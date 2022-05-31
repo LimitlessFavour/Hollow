@@ -16,7 +16,6 @@ class _HomeTabButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
     final theme = context.theme;
     final color =
         groupValue != value ? theme.colors.grey600 : theme.colors.primary600;
@@ -25,33 +24,12 @@ class _HomeTabButton extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AppIcon.regular(
+          AppIcon.small(
             icon,
             color: color,
           ),
-          // const AppGap.small(),
-          // AppText.paragraph3(
-          //   value.text(l10n),
-          //   color: color,
-          //   textAlign: TextAlign.center,
-          // ),
         ],
       ),
     );
-  }
-}
-
-extension _Text on HomeTab {
-  String text(AppLocalizations l10n) {
-    switch (this) {
-      case HomeTab.home:
-        return 'l10n.home';
-      case HomeTab.profile:
-        return 'l10n.profile';
-      case HomeTab.wallets:
-        return 'l10n.wallets';
-      case HomeTab.transactions:
-        return 'l10n.transactions';
-    }
   }
 }

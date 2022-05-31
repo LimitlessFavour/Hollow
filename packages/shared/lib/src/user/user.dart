@@ -11,8 +11,8 @@ List<Map<String, dynamic>> walletsToJson(List<Wallet> wallets) {
   return wallets.map((wallet) => wallet.toJson()).toList();
 }
 
-List<Wallet> walletsFromJson(List<Map<String, dynamic>> wallets) {
-  return wallets.map(Wallet.fromJson).toList();
+List<Wallet> walletsFromJson(List<dynamic> wallets) {
+  return wallets.map((dynamic wallet) => Wallet.fromJson(wallet as JSON)).toList();
 }
 
 @freezed

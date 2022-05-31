@@ -1,4 +1,4 @@
-import 'package:authentication_repository/src/authentication_client.dart';
+import 'package:authentication_repository/src/client/authentication_client.dart';
 import 'package:shared/shared.dart';
 
 /// {@template authentication_repository}

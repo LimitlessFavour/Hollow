@@ -46,27 +46,27 @@ class HollowRouter {
     ],
     
     errorPageBuilder: (context, state) => ErrorPage.page(state.pageKey),
-    // redirect: (state) {
-    //   final loggedIn = appBloc.state.user.isNotEmpty;
+    redirect: (state) {
+      final loggedIn = appBloc.state.user.isNotEmpty;
 
-    //   // accessible screens before authentication
-    //   final onInitialRoute = state.subloc == Routes.root.path;
-    //   final onLoginRoute = state.subloc == Routes.login.path;
-    //   final onSignupRoute = state.subloc == Routes.signUp.path;
+      // accessible screens before authentication
+      final onInitialRoute = state.subloc == Routes.root.path;
+      final onLoginRoute = state.subloc == Routes.login.path;
+      final onSignupRoute = state.subloc == Routes.signUp.path;
 
-    //   //accessible screens after authentication
-    //   final onHomeRoute = state.subloc == Routes.home.path;
-    //   final onCreateWalletRoute = state.subloc == Routes.createWallet.path;
+      //accessible screens after authentication
+      final onHomeRoute = state.subloc == Routes.home.path;
+      final onCreateWalletRoute = state.subloc == Routes.createWallet.path;
 
-    //   if (loggedIn && (onInitialRoute || onLoginRoute || onSignupRoute)) {
-    //     return Routes.home.path;
-    //   }
+      if (loggedIn && (onInitialRoute || onLoginRoute || onSignupRoute)) {
+        return Routes.home.path;
+      }
 
-    //   if (!loggedIn && (onHomeRoute || onCreateWalletRoute)) {
-    //     return Routes.root.path;
-    //   }
+      if (!loggedIn && (onHomeRoute || onCreateWalletRoute)) {
+        return Routes.root.path;
+      }
 
-    //   return null;
-    // },
+      return null;
+    },
   );
 }

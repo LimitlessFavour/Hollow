@@ -58,6 +58,7 @@ class AppIconCharactersData extends Equatable {
     required this.dollar,
     required this.addIcon,
     required this.checkCircle,
+    required this.notificationBell,
   });
 
   factory AppIconCharactersData.regular() => AppIconCharactersData(
@@ -75,6 +76,7 @@ class AppIconCharactersData extends Equatable {
         dollar: dollarSvg,
         addIcon: addIconSvg,
         checkCircle: checkCircleSvg,
+        notificationBell: notificationSvg,
       );
 
 
@@ -92,6 +94,7 @@ class AppIconCharactersData extends Equatable {
   final String dollar;
   final String addIcon;
   final String checkCircle;
+  final String notificationBell;
 
 
   @override
@@ -110,6 +113,7 @@ class AppIconCharactersData extends Equatable {
         dollar.named('dollar'),
         addIcon.named('addIcon'),
         checkCircle.named('checkCircle'),
+        notificationBell.named('notificationBell'),
       ];
 }
 

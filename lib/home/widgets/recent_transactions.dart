@@ -29,7 +29,7 @@ class _RecentTransactions extends StatelessWidget {
               ),
             ],
           ),
-          const AppGap.big(),
+          const AppGap.large(scale: 1.3),
           const _NoTransactionPlaceholder(),
         ],
       ),
@@ -53,7 +53,10 @@ class _NoTransactionPlaceholder extends StatelessWidget {
           width: 128,
         ),
         const AppGap.big(),
-        AppText.heading5(l10n.no_transactions_yet),
+        AppText.heading5(
+          l10n.no_transactions_yet,
+          color: theme.colors.textCultureGrey
+        ),
       ],
     );
   }

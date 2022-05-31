@@ -1,6 +1,6 @@
 {
     "@@locale": "en",
-    "create_new_account": "Create new account",
+    "create_new_account": "Create a new Account",
     "@create_new_account": {
         "description": "Text shown on sign up page"
     },
