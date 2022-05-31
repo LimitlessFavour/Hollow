@@ -197,5 +197,66 @@
     "fund": "Fund",
     "@fund": {
         "description": "Text shown on home page"
+    },
+
+    "welcome_to_hollow": "Welcome to Hollow",
+    "@welcome_to_hollow": {
+        "description": "Text shown on welcome page"
+    },
+    "passwords_match": "Passwords match",
+    "@passwords_match": {
+        "description": "Text shown on welcome page"
+    },
+    "confirm_password": "Confirm Password",
+    "@confirm_password": {
+        "description": "Text shown on welcome page"
+    },
+    "type_in_name": "Type in a name",
+    "@type_in_name": {
+        "description": "Text shown on welcome page"
+    },
+    "enter_last_name": "Enter a last name",
+    "@enter_last_name": {
+        "description": "Text shown on welcome page"
+    },
+    "enter_username": "Enter username",
+    "@enter_username": {
+        "description": "Text shown on welcome page"
+    },
+    "enter_valid_number": "Enter a valid phone number",
+    "@enter_valid_number": {
+        "description": "Text shown on welcome page"
+    },
+    "enter_valid_email": "Enter a valid email address",
+    "@enter_valid_email": {
+        "description": "Text shown on welcome page"
+    },
+    "please_proceed_signing": "Please proceed by signing in",
+    "@please_proceed_signing": {
+        "description": "Text shown on welcome page"
+    },
+    "sign_up": "Sign up",
+    "@sign_up": {
+        "description": "Text shown on welcome page"
+    },
+    "logout_que": "Logout?",
+    "@logout_que": {
+        "description": "Text shown on welcome page"
+    },
+    "logout": "Log out",
+    "@logout": {
+        "description": "Text shown on welcome page"
+    },
+    "error_page": "Error Page",
+    "@error_page": {
+        "description": "Text shown on welcome page"
+    },
+    "are_you_sure_logout": "Are you sure you want to logout?",
+    "@are_you_sure_logout": {
+        "description": "Text shown on welcome page"
+    },
+    "no_go_back": "No, go back",
+    "@no_go_back": {
+        "description": "Text shown on welcome page"
     }
 }

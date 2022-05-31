@@ -65,8 +65,10 @@ class CreateWalletCubit extends Cubit<CreateWalletState> {
       result.when((error) {
         throw CreateWalletFailure(error.toString());
       }, (user) {
+        print(
+            'CreateWalletStatus.successful CreateWalletStatus.successful CreateWalletStatus.successful');
         //* we update the new user
-        _appBloc.add(AppEvent.userChanged(user));
+        _appBloc.add(AppEvent.userChanged(user, false));
         emit(state.copyWith(createWalletStatus: CreateWalletStatus.successful));
       });
     } on CreateWalletFailure catch (e) {

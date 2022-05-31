@@ -14,26 +14,15 @@ class Profile extends StatelessWidget {
         horizontal: AppGapSize.big,
       ),
       child: Center(
-        child: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                _showLogoutSheet(context).then((logout) {
-                  if (logout ?? false) {
-                    context
-                        .read<AppBloc>()
-                        .add(const AppEvent.logoutRequested());
-                  }
-                });
-              },
-              child: Row(
-                children: [
-                  AppText.paragraph1('l10n.logout'),
-                  const AppGap.regular(),
-                ],
-              ),
-            ),
-          ],
+        child: AppButton(
+          title: l10n.logout,
+          onTap: () {
+            _showLogoutSheet(context).then((logout) {
+              if (logout ?? false) {
+                context.read<AppBloc>().add(const AppEvent.logoutRequested());
+              }
+            });
+          },
         ),
       ),
     );
@@ -49,13 +38,13 @@ class Profile extends StatelessWidget {
       children: [
         const AppGap.semiBig(),
         AppText.heading3(
-          'l10n.logout?',
+          l10n.logout_que,
           fontWeight: FontWeight.w700,
           fontFamily: AppFontFamily.karla,
         ),
         const AppGap.regular(),
         AppText.paragraph1(
-          'l10n. are you sure you want to logout?',
+          l10n.are_you_sure_logout,
           textAlign: TextAlign.center,
           color: theme.colors.grey700,
         ),
@@ -64,12 +53,12 @@ class Profile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             AppButton(
-              title: 'l10n.log out',
+              title: l10n.logout,
               onTap: () => Navigator.of(context).pop(true),
             ),
             const AppGap.regular(),
             AppButton(
-              title: 'l10n.No, go back',
+              title: l10n.no_go_back,
               color: theme.colors.white,
               textColor: theme.colors.primary600,
               borderColor: theme.colors.primary200.withOpacity(0.6),

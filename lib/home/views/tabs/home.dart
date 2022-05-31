@@ -109,13 +109,12 @@ class _WalletState extends State<_Wallet> {
 
   @override
   Widget build(BuildContext context) {
-    final appBloc = context.read<AppBloc>();
-    final wallets = appBloc.state.user.wallets;
+    final wallets = context.select((AppBloc bloc) => bloc.state.user.wallets);
     if (wallets.isEmpty) {
       return const _CreateWalletCard();
     }
     return SizedBox(
-      height: context.height / 3.8,
+      height: context.height / 3.6,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -138,7 +137,7 @@ class _WalletState extends State<_Wallet> {
   }
 }
 
-class _WalletCountIndicator extends StatelessWidget {
+class _WalletCountIndicator extends StatefulWidget {
   const _WalletCountIndicator(
     this.controller, {
     Key? key,
@@ -147,8 +146,65 @@ class _WalletCountIndicator extends StatelessWidget {
   final PageController controller;
 
   @override
+  State<_WalletCountIndicator> createState() => _WalletCountIndicatorState();
+}
+
+class _WalletCountIndicatorState extends State<_WalletCountIndicator> {
+  late final PageController controller;
+  int page = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = widget.controller;
+    controller.addListener(() {
+      if (controller.hasClients && controller.page!.round() != page) {
+        setState(() {
+          page = controller.page!.round();
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    final wallets = context.select((AppBloc bloc) => bloc.state.user.wallets);
+    final length = wallets.length;
+    return Center(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          for (int i = 0; i < length; i++)
+            AppPadding(
+              padding: AppEdgeInsets.only(
+                right: i == length - 1 ? AppGapSize.none : AppGapSize.semiSmall,
+              ),
+              child: _IndicatorBall(page == i),
+            )
+        ],
+      ),
+    );
+  }
+}
+
+class _IndicatorBall extends StatelessWidget {
+  // ignore: avoid_positional_boolean_parameters
+  const _IndicatorBall(this.selected, {Key? key}) : super(key: key);
+
+  final bool selected;
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.theme;
+    return AnimatedContainer(
+      duration: theme.durations.slow,
+      curve: Curves.easeIn,
+      height: theme.spacing.semiSmall,
+      width: theme.spacing.semiSmall * (selected ? 4 : 1.5),
+      decoration: BoxDecoration(
+        color: selected ? theme.colors.success600 : theme.colors.success100,
+        borderRadius: BorderRadius.circular(99),
+      ),
+    );
   }
 }
 

@@ -114,7 +114,7 @@ class _FirstNameMiddleName extends StatelessWidget {
         return AppTextField(
           padding: const AppEdgeInsets.only(bottom: AppGapSize.semiBig),
           hintText: l10n.first_name_middle_name,
-          errorText: state.name.invalid ? 'l10n.type in a name' : null,
+          errorText: state.name.invalid ? l10n.type_in_name: null,
           onChanged: (name) => context.read<SignupCubit>().nameChanged(name),
         );
       },
@@ -134,7 +134,7 @@ class _LastName extends StatelessWidget {
         return AppTextField(
           padding: const AppEdgeInsets.only(bottom: AppGapSize.semiBig),
           hintText: l10n.last_name,
-          errorText: state.lastname.invalid ? 'l10n.enter a last name' : null,
+          errorText: state.lastname.invalid ? l10n.enter_last_name : null,
           onChanged: (lastname) =>
               context.read<SignupCubit>().lastnameChanged(lastname),
         );
@@ -155,7 +155,7 @@ class _PreferredName extends StatelessWidget {
         return AppTextField(
           padding: const AppEdgeInsets.only(bottom: AppGapSize.semiBig),
           hintText: l10n.preferred_name_username,
-          errorText: state.username.invalid ? 'l10n.enter username' : null,
+          errorText: state.username.invalid ? l10n.enter_username : null,
           onChanged: (name) =>
               context.read<SignupCubit>().usernameChanged(name),
         );
@@ -178,7 +178,7 @@ class _PhoneNumber extends StatelessWidget {
           hintText: l10n.phone_number,
           keyboardType: TextInputType.phone,
           errorText:
-              state.phone.invalid ? 'l10n.enter a valid phonenumber' : null,
+              state.phone.invalid ? l10n.enter_valid_number : null,
           onChanged: (phone) => context.read<SignupCubit>().phoneChanged(phone),
         );
       },
@@ -199,7 +199,7 @@ class _EmailAddress extends StatelessWidget {
           padding: const AppEdgeInsets.only(bottom: AppGapSize.semiBig),
           hintText: l10n.email_address,
           errorText:
-              state.email.invalid ? 'l10n.enter a valid email address' : null,
+              state.email.invalid ? l10n.enter_valid_email : null,
           onChanged: (email) => context.read<SignupCubit>().emailChanged(email),
         );
       },
@@ -229,7 +229,7 @@ class _Password extends StatelessWidget {
             ),
             const AppGap.semiBig(),
             AppTextField(
-              hintText: 'l10n.confirm_passsword',
+              hintText: l10n.confirm_password,
               onChanged: (password) => context
                   .read<SignupCubit>()
                   .confirmedPasswordChanged(password),
@@ -329,7 +329,7 @@ class _PasswordMatchCheckbox extends StatelessWidget {
           previous.confirmedPassword != current.confirmedPassword,
       builder: (context, state) {
         return OnboardingCheckbox(
-          title: 'l10n.passwords match',
+          title: l10n.passwords_match,
           value: !state.confirmedPassword.invalid && !state.password.pure,
         );
       },

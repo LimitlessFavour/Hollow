@@ -51,5 +51,21 @@
     "welcome_back": "Bienvenido de nuevo",
     "currency_balance": "Saldo %1",
     "withdraw": "Retirarse",
-    "fund": "Fondo"
+    "fund": "Fondo",
+    
+    "welcome_to_hollow": "Bienvenido a hollow",
+    "passwords_match": "Las contraseñas coinciden",
+    "confirm_password": "Confirmar contraseña",
+    "type_in_name": "Escriba un nombre",
+    "enter_last_name": "Escriba un apellido",
+    "enter_username": "Escriba el nombre de usuario",
+    "enter_valid_number": "Introduzca un número de teléfono válido",
+    "enter_valid_email": "Introduzca una dirección de correo electrónico válida",
+    "please_proceed_signing": "Continúe iniciando sesión",
+    "sign_up": "Iniciar sesión",
+    "logout_que": "¿Cerrar sesión?",
+    "logout": "Cerrar sesión",
+    "error_page": "Página de errores",
+    "are_you_sure_logout": "¿Está seguro de que desea cerrar sesión?",
+    "no_go_back": "No, volver"
 }

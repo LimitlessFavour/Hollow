@@ -56,19 +56,9 @@ class DemoAuthClient extends BaseAuthenticationClient {
   Future<Result<Exception, User>> sendLogoutData({
     required void Function(String? newToken) updateTokenCallback,
     required String authToken,
-  }) {
-    return _apiService.setData<Result<Exception, User>>(
-      endpoint: ApiEndpoints.auth(AuthEndpoint.LOGOUT),
-      body: null,
-      headers: <String, String>{'authToken': authToken},
-      converter: (response) {
-        if (response['code'] == 200) {
-          updateTokenCallback(null);
-          return const Success(User.empty);
-        }
-        final message = response['message'] as String;
-        return Error(Exception(message));
-      },
-    );
+  }) async {
+    await Future<void>.delayed(const Duration(seconds: 3));
+    updateTokenCallback(null);
+    return const Success(User.empty);
   }
 }

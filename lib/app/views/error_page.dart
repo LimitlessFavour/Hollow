@@ -23,8 +23,8 @@ class _ErrorPageState extends State<ErrorPage> {
     return AppScaffold(
       backgroundColor: theme.colors.white,
       addSafeArea: true,
-      body: const Center(
-        child: AppText.paragraph1('l10n.Error Page'),
+      body: Center(
+        child: AppText.paragraph1(l10n.error_page),
       ),
     );
   }

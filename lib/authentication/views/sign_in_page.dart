@@ -49,7 +49,7 @@ class _LoginView extends StatelessWidget {
               const _SignInText(),
               const AppGap.regular(),
               AppText.paragraph1(
-                'l10n. Please proceed by signing in',
+                l10n.please_proceed_signing,
                 color: context.theme.colors.grey700,
               ),
               const AppGap.large(),
@@ -96,7 +96,7 @@ class _EmailAddress extends StatelessWidget {
           hintText: l10n.email_address,
           keyboardType: TextInputType.emailAddress,
           errorText:
-              state.email.invalid ? 'l10n.enter a valid email address' : null,
+              state.email.invalid ? l10n.enter_valid_email : null,
           onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
         );
       },

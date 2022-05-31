@@ -17,9 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AppEventTearOff {
   const _$AppEventTearOff();
 
-  _UserChanged userChanged(User user) {
+  _UserChanged userChanged(User user, [bool? notifyListeners]) {
     return _UserChanged(
       user,
+      notifyListeners,
     );
   }
 
@@ -41,21 +42,21 @@ const $AppEvent = _$AppEventTearOff();
 mixin _$AppEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) userChanged,
+    required TResult Function(User user, bool? notifyListeners) userChanged,
     required TResult Function() logoutRequested,
     required TResult Function(String? token) authTokenUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? userChanged,
+    TResult Function(User user, bool? notifyListeners)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function(String? token)? authTokenUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? userChanged,
+    TResult Function(User user, bool? notifyListeners)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function(String? token)? authTokenUpdated,
     required TResult orElse(),
@@ -105,7 +106,7 @@ abstract class _$UserChangedCopyWith<$Res> {
   factory _$UserChangedCopyWith(
           _UserChanged value, $Res Function(_UserChanged) then) =
       __$UserChangedCopyWithImpl<$Res>;
-  $Res call({User user});
+  $Res call({User user, bool? notifyListeners});
 
   $UserCopyWith<$Res> get user;
 }
@@ -123,12 +124,17 @@ class __$UserChangedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = freezed,
+    Object? notifyListeners = freezed,
   }) {
     return _then(_UserChanged(
       user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as User,
+      notifyListeners == freezed
+          ? _value.notifyListeners
+          : notifyListeners // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 
@@ -143,14 +149,16 @@ class __$UserChangedCopyWithImpl<$Res> extends _$AppEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UserChanged implements _UserChanged {
-  const _$_UserChanged(this.user);
+  const _$_UserChanged(this.user, [this.notifyListeners]);
 
   @override
   final User user;
+  @override
+  final bool? notifyListeners;
 
   @override
   String toString() {
-    return 'AppEvent.userChanged(user: $user)';
+    return 'AppEvent.userChanged(user: $user, notifyListeners: $notifyListeners)';
   }
 
   @override
@@ -158,12 +166,16 @@ class _$_UserChanged implements _UserChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UserChanged &&
-            const DeepCollectionEquality().equals(other.user, user));
+            const DeepCollectionEquality().equals(other.user, user) &&
+            const DeepCollectionEquality()
+                .equals(other.notifyListeners, notifyListeners));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(user),
+      const DeepCollectionEquality().hash(notifyListeners));
 
   @JsonKey(ignore: true)
   @override
@@ -173,33 +185,33 @@ class _$_UserChanged implements _UserChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) userChanged,
+    required TResult Function(User user, bool? notifyListeners) userChanged,
     required TResult Function() logoutRequested,
     required TResult Function(String? token) authTokenUpdated,
   }) {
-    return userChanged(user);
+    return userChanged(user, notifyListeners);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? userChanged,
+    TResult Function(User user, bool? notifyListeners)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function(String? token)? authTokenUpdated,
   }) {
-    return userChanged?.call(user);
+    return userChanged?.call(user, notifyListeners);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? userChanged,
+    TResult Function(User user, bool? notifyListeners)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function(String? token)? authTokenUpdated,
     required TResult orElse(),
   }) {
     if (userChanged != null) {
-      return userChanged(user);
+      return userChanged(user, notifyListeners);
     }
     return orElse();
   }
@@ -240,9 +252,11 @@ class _$_UserChanged implements _UserChanged {
 }
 
 abstract class _UserChanged implements AppEvent {
-  const factory _UserChanged(User user) = _$_UserChanged;
+  const factory _UserChanged(User user, [bool? notifyListeners]) =
+      _$_UserChanged;
 
   User get user;
+  bool? get notifyListeners;
   @JsonKey(ignore: true)
   _$UserChangedCopyWith<_UserChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -288,7 +302,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) userChanged,
+    required TResult Function(User user, bool? notifyListeners) userChanged,
     required TResult Function() logoutRequested,
     required TResult Function(String? token) authTokenUpdated,
   }) {
@@ -298,7 +312,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? userChanged,
+    TResult Function(User user, bool? notifyListeners)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function(String? token)? authTokenUpdated,
   }) {
@@ -308,7 +322,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? userChanged,
+    TResult Function(User user, bool? notifyListeners)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function(String? token)? authTokenUpdated,
     required TResult orElse(),
@@ -422,7 +436,7 @@ class _$_AuthTokenUpdated implements _AuthTokenUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(User user) userChanged,
+    required TResult Function(User user, bool? notifyListeners) userChanged,
     required TResult Function() logoutRequested,
     required TResult Function(String? token) authTokenUpdated,
   }) {
@@ -432,7 +446,7 @@ class _$_AuthTokenUpdated implements _AuthTokenUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(User user)? userChanged,
+    TResult Function(User user, bool? notifyListeners)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function(String? token)? authTokenUpdated,
   }) {
@@ -442,7 +456,7 @@ class _$_AuthTokenUpdated implements _AuthTokenUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(User user)? userChanged,
+    TResult Function(User user, bool? notifyListeners)? userChanged,
     TResult Function()? logoutRequested,
     TResult Function(String? token)? authTokenUpdated,
     required TResult orElse(),
